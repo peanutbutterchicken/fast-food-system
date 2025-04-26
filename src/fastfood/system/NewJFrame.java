@@ -74,14 +74,14 @@ public class NewJFrame extends javax.swing.JFrame {
     
     void createConnection() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mydb", "root", "101609");
-            System.out.println("Database connetion success!");
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Loads the MySQL JDBC (Java Database Connectivity) driver class into memory.
+            Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mydb", "root", "101609"); //  This method establishes the connection to the database.
+            System.out.println("Database connetion success!"); // connection success confirmation
         }
-        catch(ClassNotFoundException ex) {
+        catch(ClassNotFoundException ex) { // If the JDBC driver class is missing.  
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch(SQLException ex){
+        catch(SQLException ex){ //  If there is an issue with the connection itself
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null , ex);
         }
     }
