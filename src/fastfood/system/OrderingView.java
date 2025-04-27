@@ -380,6 +380,13 @@ public class OrderingView extends javax.swing.JFrame {
         jTable1.setShowGrid(false);
         jTable1.getTableHeader().setResizingAllowed(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jTable1InputMethodTextChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -588,6 +595,7 @@ public class OrderingView extends javax.swing.JFrame {
             }
         });
 
+        jtxtQty11.setBackground(new java.awt.Color(255, 255, 255));
         jtxtQty11.setForeground(new java.awt.Color(0, 0, 0));
         jtxtQty11.setBorder(null);
         jtxtQty11.setFocusable(false);
@@ -658,11 +666,21 @@ public class OrderingView extends javax.swing.JFrame {
         jButton3.setBorder(null);
         jButton3.setFocusPainted(false);
         jButton3.setFocusable(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
         jButton4.setBorder(null);
         jButton4.setFocusPainted(false);
         jButton4.setFocusable(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField3.setText("Quantity:");
@@ -673,8 +691,9 @@ public class OrderingView extends javax.swing.JFrame {
             }
         });
 
+        jtxtQty12.setEditable(false);
+        jtxtQty12.setBackground(new java.awt.Color(255, 255, 255));
         jtxtQty12.setBorder(null);
-        jtxtQty12.setEnabled(false);
         jtxtQty12.setFocusable(false);
 
         javax.swing.GroupLayout jPanel69Layout = new javax.swing.GroupLayout(jPanel69);
@@ -728,11 +747,21 @@ public class OrderingView extends javax.swing.JFrame {
         jButton7.setBorder(null);
         jButton7.setFocusPainted(false);
         jButton7.setFocusable(false);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
         jButton8.setBorder(null);
         jButton8.setFocusPainted(false);
         jButton8.setFocusable(false);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jTextField7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField7.setText("Quantity:");
@@ -743,9 +772,15 @@ public class OrderingView extends javax.swing.JFrame {
             }
         });
 
+        jtxtQty13.setEditable(false);
+        jtxtQty13.setBackground(new java.awt.Color(255, 255, 255));
         jtxtQty13.setBorder(null);
-        jtxtQty13.setEnabled(false);
         jtxtQty13.setFocusable(false);
+        jtxtQty13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtQty13ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel71Layout = new javax.swing.GroupLayout(jPanel71);
         jPanel71.setLayout(jPanel71Layout);
@@ -798,11 +833,21 @@ public class OrderingView extends javax.swing.JFrame {
         jButton5.setBorder(null);
         jButton5.setFocusPainted(false);
         jButton5.setFocusable(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
         jButton6.setBorder(null);
         jButton6.setFocusPainted(false);
         jButton6.setFocusable(false);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField5.setText("Quantity:");
@@ -813,8 +858,9 @@ public class OrderingView extends javax.swing.JFrame {
             }
         });
 
+        jtxtQty14.setEditable(false);
+        jtxtQty14.setBackground(new java.awt.Color(255, 255, 255));
         jtxtQty14.setBorder(null);
-        jtxtQty14.setEnabled(false);
         jtxtQty14.setFocusable(false);
 
         javax.swing.GroupLayout jPanel70Layout = new javax.swing.GroupLayout(jPanel70);
@@ -868,11 +914,21 @@ public class OrderingView extends javax.swing.JFrame {
         jButton10.setBorder(null);
         jButton10.setFocusPainted(false);
         jButton10.setFocusable(false);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
         jButton11.setBorder(null);
         jButton11.setFocusPainted(false);
         jButton11.setFocusable(false);
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jTextField9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField9.setText("Quantity:");
@@ -883,8 +939,9 @@ public class OrderingView extends javax.swing.JFrame {
             }
         });
 
+        jtxtQty15.setEditable(false);
+        jtxtQty15.setBackground(new java.awt.Color(255, 255, 255));
         jtxtQty15.setBorder(null);
-        jtxtQty15.setEnabled(false);
         jtxtQty15.setFocusable(false);
         jtxtQty15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -943,11 +1000,21 @@ public class OrderingView extends javax.swing.JFrame {
         jButton12.setBorder(null);
         jButton12.setFocusPainted(false);
         jButton12.setFocusable(false);
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
         jButton13.setBorder(null);
         jButton13.setFocusPainted(false);
         jButton13.setFocusable(false);
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jTextField11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField11.setText("Quantity:");
@@ -958,8 +1025,9 @@ public class OrderingView extends javax.swing.JFrame {
             }
         });
 
+        jtxtQty16.setEditable(false);
+        jtxtQty16.setBackground(new java.awt.Color(255, 255, 255));
         jtxtQty16.setBorder(null);
-        jtxtQty16.setEnabled(false);
         jtxtQty16.setFocusable(false);
 
         javax.swing.GroupLayout jPanel73Layout = new javax.swing.GroupLayout(jPanel73);
@@ -1163,6 +1231,7 @@ public class OrderingView extends javax.swing.JFrame {
     private void btnChckBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChckBurgerActionPerformed
         jTabbedPane1.setSelectedIndex(1);
         //reset color to white
+        //to-do: DRY principle dito
         btnSpBurger.setBackground(Color.white);
         btnHotdogs.setBackground(Color.white);
         btnGrills.setBackground(Color.white);
@@ -1372,6 +1441,94 @@ public class OrderingView extends javax.swing.JFrame {
             jtxtQty11.setText(value);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable1InputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1InputMethodTextChanged
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if(sp2.quantity >= 0){
+            sp2.quantity++;
+            String value = Integer.toString(sp2.quantity);
+            jtxtQty12.setText(value);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jtxtQty13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtQty13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtQty13ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(sp2.quantity > 0){
+            sp2.quantity--;
+            String value = Integer.toString(sp2.quantity);
+            jtxtQty12.setText(value);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        if(sp3.quantity >= 0){
+            sp3.quantity++;
+            String value = Integer.toString(sp3.quantity);
+            jtxtQty13.setText(value);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        if(sp3.quantity > 0){
+            sp3.quantity--;
+            String value = Integer.toString(sp3.quantity);
+            jtxtQty13.setText(value);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if(sp4.quantity >= 0){
+            sp4.quantity++;
+            String value = Integer.toString(sp4.quantity);
+            jtxtQty14.setText(value);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if(sp4.quantity > 0){
+            sp4.quantity--;
+            String value = Integer.toString(sp4.quantity);
+            jtxtQty14.setText(value);
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if(sp5.quantity >= 0){
+            sp5.quantity++;
+            String value = Integer.toString(sp5.quantity);
+            jtxtQty15.setText(value);
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        if(sp5.quantity > 0){
+            sp5.quantity--;
+            String value = Integer.toString(sp5.quantity);
+            jtxtQty15.setText(value);
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        if(sp6.quantity >= 0){
+            sp6.quantity++;
+            String value = Integer.toString(sp6.quantity);
+            jtxtQty16.setText(value);
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        if(sp6.quantity > 0){
+            sp6.quantity--;
+            String value = Integer.toString(sp6.quantity);
+            jtxtQty16.setText(value);
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
