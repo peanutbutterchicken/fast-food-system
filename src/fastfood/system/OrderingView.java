@@ -3,6 +3,8 @@ package fastfood.system;
 
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JTextField;
+
 
 public class OrderingView extends javax.swing.JFrame {
 
@@ -16,7 +18,38 @@ public class OrderingView extends javax.swing.JFrame {
             button.setContentAreaFilled(false);
         }
     }
-    
+    public class SpecialBurgers {
+        String name;
+        int quantity;
+        int price;
+    }
+    public class SpBurger1 extends SpecialBurgers {
+        int quantity=0;
+        String name = "DBB";
+        int price = 230;
+    }
+    public class SpBurger2 extends SpecialBurgers {
+        int quantity=0;
+    }
+    public class SpBurger3 extends SpecialBurgers {
+        int quantity=0;
+    }
+    public class SpBurger4 extends SpecialBurgers {
+        int quantity=0;
+    }
+    public class SpBurger5 extends SpecialBurgers {
+        int quantity=0;
+    }
+    public class SpBurger6 extends SpecialBurgers {
+        int quantity=0;
+    }
+    // Initialize Objects for Button ActionListeners
+    SpBurger1 sp1 = new SpBurger1();
+    SpBurger2 sp2 = new SpBurger2();
+    SpBurger3 sp3 = new SpBurger3();
+    SpBurger4 sp4 = new SpBurger4();
+    SpBurger5 sp5 = new SpBurger5();
+    SpBurger6 sp6 = new SpBurger6();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -524,17 +557,27 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 102, 102));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Php 999.99");
+        jLabel9.setText("Php 230.00");
 
         jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
         jButton1.setBorder(null);
         jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
         jButton2.setBorder(null);
         jButton2.setFocusPainted(false);
         jButton2.setFocusable(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField1.setText("Quantity:");
@@ -545,9 +588,14 @@ public class OrderingView extends javax.swing.JFrame {
             }
         });
 
+        jtxtQty11.setForeground(new java.awt.Color(0, 0, 0));
         jtxtQty11.setBorder(null);
-        jtxtQty11.setEnabled(false);
         jtxtQty11.setFocusable(false);
+        jtxtQty11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtQty11ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel68Layout = new javax.swing.GroupLayout(jPanel68);
         jPanel68.setLayout(jPanel68Layout);
@@ -1303,6 +1351,27 @@ public class OrderingView extends javax.swing.JFrame {
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        if(sp1.quantity >= 0){
+            sp1.quantity++;
+            String value = Integer.toString(sp1.quantity);
+            jtxtQty11.setText(value);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jtxtQty11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtQty11ActionPerformed
+        
+    }//GEN-LAST:event_jtxtQty11ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(sp1.quantity > 0){
+            sp1.quantity--;
+            String value = Integer.toString(sp1.quantity);
+            jtxtQty11.setText(value);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
