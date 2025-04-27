@@ -115,7 +115,7 @@ public class CustomerView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOrder2btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrder2btnOrderActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnOrder2btnOrderActionPerformed
 
     private void btnLogin2btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin2btnLoginActionPerformed

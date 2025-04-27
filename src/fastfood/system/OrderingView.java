@@ -1,18 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package fastfood.system;
 
-/**
- *
- * @author markj
- */
 public class OrderingView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form OrderingView
-     */
     public OrderingView() {
         initComponents();
     }
@@ -26,25 +16,426 @@ public class OrderingView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel18 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        sidebar = new javax.swing.JPanel();
+        jpanelSystemTitle = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jbtnSpBurger = new javax.swing.JButton();
+        jbtnChckBurger = new javax.swing.JButton();
+        btnBurger = new javax.swing.JButton();
+        btnMiniBurger = new javax.swing.JButton();
+        btnHotdogs = new javax.swing.JButton();
+        btnGrills = new javax.swing.JButton();
+        btnDesserts = new javax.swing.JButton();
+        btnSides = new javax.swing.JButton();
+        btnDrinks = new javax.swing.JButton();
+        sidebar3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        btnPayNow = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jButton9 = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jPanel19 = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 783, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 556, Short.MAX_VALUE)
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(239, 239, 239));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        sidebar.setBackground(new java.awt.Color(255, 255, 255));
+        sidebar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout jpanelSystemTitleLayout = new javax.swing.GroupLayout(jpanelSystemTitle);
+        jpanelSystemTitle.setLayout(jpanelSystemTitleLayout);
+        jpanelSystemTitleLayout.setHorizontalGroup(
+            jpanelSystemTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 212, Short.MAX_VALUE)
+        );
+        jpanelSystemTitleLayout.setVerticalGroup(
+            jpanelSystemTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 42, Short.MAX_VALUE)
+        );
+
+        sidebar.add(jpanelSystemTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 212, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("MENU");
+        sidebar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 60, 107, 36));
+
+        jbtnSpBurger.setBackground(new java.awt.Color(255, 0, 51));
+        jbtnSpBurger.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jbtnSpBurger.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnSpBurger.setText("    Special Burgers");
+        jbtnSpBurger.setBorder(null);
+        jbtnSpBurger.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbtnSpBurger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSpBurgerActionPerformed(evt);
+            }
+        });
+        sidebar.add(jbtnSpBurger, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 102, 224, 36));
+
+        jbtnChckBurger.setBackground(new java.awt.Color(255, 255, 255));
+        jbtnChckBurger.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jbtnChckBurger.setForeground(new java.awt.Color(0, 0, 0));
+        jbtnChckBurger.setText("    Chicken Burgers");
+        jbtnChckBurger.setBorder(null);
+        jbtnChckBurger.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbtnChckBurger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnChckBurgerActionPerformed(evt);
+            }
+        });
+        sidebar.add(jbtnChckBurger, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 144, 224, 36));
+
+        btnBurger.setBackground(new java.awt.Color(255, 255, 255));
+        btnBurger.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBurger.setForeground(new java.awt.Color(0, 0, 0));
+        btnBurger.setText("    Burgers");
+        btnBurger.setBorder(null);
+        btnBurger.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnBurger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBurgerActionPerformed(evt);
+            }
+        });
+        sidebar.add(btnBurger, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 186, 224, 36));
+
+        btnMiniBurger.setBackground(new java.awt.Color(255, 255, 255));
+        btnMiniBurger.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnMiniBurger.setForeground(new java.awt.Color(0, 0, 0));
+        btnMiniBurger.setText("    Mini Burgers");
+        btnMiniBurger.setBorder(null);
+        btnMiniBurger.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnMiniBurger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMiniBurgerActionPerformed(evt);
+            }
+        });
+        sidebar.add(btnMiniBurger, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 228, 224, 36));
+
+        btnHotdogs.setBackground(new java.awt.Color(255, 255, 255));
+        btnHotdogs.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnHotdogs.setForeground(new java.awt.Color(0, 0, 0));
+        btnHotdogs.setText("    Hotdogs");
+        btnHotdogs.setBorder(null);
+        btnHotdogs.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnHotdogs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHotdogsActionPerformed(evt);
+            }
+        });
+        sidebar.add(btnHotdogs, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 224, 36));
+
+        btnGrills.setBackground(new java.awt.Color(255, 255, 255));
+        btnGrills.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGrills.setForeground(new java.awt.Color(0, 0, 0));
+        btnGrills.setText("    Grills");
+        btnGrills.setBorder(null);
+        btnGrills.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnGrills.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrillsActionPerformed(evt);
+            }
+        });
+        sidebar.add(btnGrills, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 312, 224, 36));
+
+        btnDesserts.setBackground(new java.awt.Color(255, 255, 255));
+        btnDesserts.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDesserts.setForeground(new java.awt.Color(0, 0, 0));
+        btnDesserts.setText("    Desserts");
+        btnDesserts.setBorder(null);
+        btnDesserts.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnDesserts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDessertsActionPerformed(evt);
+            }
+        });
+        sidebar.add(btnDesserts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 354, 224, 36));
+
+        btnSides.setBackground(new java.awt.Color(255, 255, 255));
+        btnSides.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSides.setForeground(new java.awt.Color(0, 0, 0));
+        btnSides.setText("    Sides");
+        btnSides.setActionCommand("    Sides");
+        btnSides.setBorder(null);
+        btnSides.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSides.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSidesActionPerformed(evt);
+            }
+        });
+        sidebar.add(btnSides, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 396, 224, 36));
+
+        btnDrinks.setBackground(new java.awt.Color(255, 255, 255));
+        btnDrinks.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDrinks.setForeground(new java.awt.Color(0, 0, 0));
+        btnDrinks.setText("    Drinks");
+        btnDrinks.setActionCommand("    Drinks");
+        btnDrinks.setBorder(null);
+        btnDrinks.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnDrinks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDrinksActionPerformed(evt);
+            }
+        });
+        sidebar.add(btnDrinks, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 438, 224, 36));
+
+        jPanel1.add(sidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 630));
+
+        sidebar3.setBackground(new java.awt.Color(255, 255, 255));
+        sidebar3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("MY ORDER");
+        sidebar3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 107, 36));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 277, Short.MAX_VALUE)
+        );
+
+        sidebar3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 48, 200, -1));
+
+        btnPayNow.setBackground(new java.awt.Color(0, 204, 51));
+        btnPayNow.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        btnPayNow.setForeground(new java.awt.Color(0, 0, 0));
+        btnPayNow.setText("PAY NOW");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnPayNow, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(148, Short.MAX_VALUE)
+                .addComponent(btnPayNow, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        sidebar3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 331, -1, -1));
+
+        jButton9.setText("jButton5");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(143, Short.MAX_VALUE)
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        sidebar3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 542, 200, -1));
+
+        jPanel1.add(sidebar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, -1, 630));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab1", jPanel3);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab2", jPanel9);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab3", jPanel6);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab4", jPanel10);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab5", jPanel14);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab6", jPanel15);
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab7", jPanel16);
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab8", jPanel17);
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab9", jPanel19);
+
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 640, 630));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jbtnChckBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnChckBurgerActionPerformed
+        jTabbedPane1.setSelectedIndex(1);
+       
+    }//GEN-LAST:event_jbtnChckBurgerActionPerformed
+
+    private void jbtnSpBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSpBurgerActionPerformed
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_jbtnSpBurgerActionPerformed
+
+    private void btnBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBurgerActionPerformed
+        jTabbedPane1.setSelectedIndex(2);
+    }//GEN-LAST:event_btnBurgerActionPerformed
+
+    private void btnMiniBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMiniBurgerActionPerformed
+        jTabbedPane1.setSelectedIndex(3);
+    }//GEN-LAST:event_btnMiniBurgerActionPerformed
+
+    private void btnHotdogsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHotdogsActionPerformed
+        jTabbedPane1.setSelectedIndex(4);
+    }//GEN-LAST:event_btnHotdogsActionPerformed
+
+    private void btnGrillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrillsActionPerformed
+        jTabbedPane1.setSelectedIndex(5);
+    }//GEN-LAST:event_btnGrillsActionPerformed
+
+    private void btnDessertsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDessertsActionPerformed
+        jTabbedPane1.setSelectedIndex(6);
+    }//GEN-LAST:event_btnDessertsActionPerformed
+
+    private void btnSidesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidesActionPerformed
+        jTabbedPane1.setSelectedIndex(7);
+    }//GEN-LAST:event_btnSidesActionPerformed
+
+    private void btnDrinksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrinksActionPerformed
+        jTabbedPane1.setSelectedIndex(8);
+    }//GEN-LAST:event_btnDrinksActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -70,13 +461,55 @@ public class OrderingView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new OrderingView().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBurger;
+    private javax.swing.JButton btnDesserts;
+    private javax.swing.JButton btnDrinks;
+    private javax.swing.JButton btnGrills;
+    private javax.swing.JButton btnHotdogs;
+    private javax.swing.JButton btnMiniBurger;
+    private javax.swing.JButton btnPayNow;
+    private javax.swing.JButton btnSides;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton jbtnChckBurger;
+    private javax.swing.JButton jbtnSpBurger;
+    private javax.swing.JPanel jpanelSystemTitle;
+    private javax.swing.JPanel sidebar;
+    private javax.swing.JPanel sidebar1;
+    private javax.swing.JPanel sidebar2;
+    private javax.swing.JPanel sidebar3;
     // End of variables declaration//GEN-END:variables
 }
