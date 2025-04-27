@@ -1,12 +1,15 @@
 
 package fastfood.system;
 
+import java.awt.Color;
+import javax.swing.JButton;
+
 public class OrderingView extends javax.swing.JFrame {
 
     public OrderingView() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -21,8 +24,8 @@ public class OrderingView extends javax.swing.JFrame {
         sidebar = new javax.swing.JPanel();
         jpanelSystemTitle = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jbtnSpBurger = new javax.swing.JButton();
-        jbtnChckBurger = new javax.swing.JButton();
+        btnSpBurger = new javax.swing.JButton();
+        btnChckBurger = new javax.swing.JButton();
         btnBurger = new javax.swing.JButton();
         btnMiniBurger = new javax.swing.JButton();
         btnHotdogs = new javax.swing.JButton();
@@ -86,31 +89,31 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel1.setText("MENU");
         sidebar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 60, 107, 36));
 
-        jbtnSpBurger.setBackground(new java.awt.Color(255, 0, 51));
-        jbtnSpBurger.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jbtnSpBurger.setForeground(new java.awt.Color(255, 255, 255));
-        jbtnSpBurger.setText("    Special Burgers");
-        jbtnSpBurger.setBorder(null);
-        jbtnSpBurger.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jbtnSpBurger.addActionListener(new java.awt.event.ActionListener() {
+        btnSpBurger.setBackground(new java.awt.Color(255, 255, 255));
+        btnSpBurger.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSpBurger.setForeground(new java.awt.Color(0, 0, 0));
+        btnSpBurger.setText("    Special Burgers");
+        btnSpBurger.setBorder(null);
+        btnSpBurger.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSpBurger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnSpBurgerActionPerformed(evt);
+                btnSpBurgerActionPerformed(evt);
             }
         });
-        sidebar.add(jbtnSpBurger, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 102, 224, 36));
+        sidebar.add(btnSpBurger, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 102, 224, 36));
 
-        jbtnChckBurger.setBackground(new java.awt.Color(255, 255, 255));
-        jbtnChckBurger.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jbtnChckBurger.setForeground(new java.awt.Color(0, 0, 0));
-        jbtnChckBurger.setText("    Chicken Burgers");
-        jbtnChckBurger.setBorder(null);
-        jbtnChckBurger.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jbtnChckBurger.addActionListener(new java.awt.event.ActionListener() {
+        btnChckBurger.setBackground(new java.awt.Color(255, 255, 255));
+        btnChckBurger.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnChckBurger.setForeground(new java.awt.Color(0, 0, 0));
+        btnChckBurger.setText("    Chicken Burgers");
+        btnChckBurger.setBorder(null);
+        btnChckBurger.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnChckBurger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnChckBurgerActionPerformed(evt);
+                btnChckBurgerActionPerformed(evt);
             }
         });
-        sidebar.add(jbtnChckBurger, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 144, 224, 36));
+        sidebar.add(btnChckBurger, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 144, 224, 36));
 
         btnBurger.setBackground(new java.awt.Color(255, 255, 255));
         btnBurger.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -399,41 +402,148 @@ public class OrderingView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnChckBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnChckBurgerActionPerformed
+    private void btnChckBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChckBurgerActionPerformed
         jTabbedPane1.setSelectedIndex(1);
-       
-    }//GEN-LAST:event_jbtnChckBurgerActionPerformed
+        //reset color to white
+        btnSpBurger.setBackground(Color.white);
+        btnHotdogs.setBackground(Color.white);
+        btnGrills.setBackground(Color.white);
+        btnDesserts.setBackground(Color.white);
+        btnSides.setBackground(Color.white);
+        btnDrinks.setBackground(Color.white);
+        btnBurger.setBackground(Color.white);
+        btnMiniBurger.setBackground(Color.white);
+        //selected button is highlighted
+        btnChckBurger.setBackground(new java.awt.Color(255,0,51)); 
+                
+    }//GEN-LAST:event_btnChckBurgerActionPerformed
 
-    private void jbtnSpBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSpBurgerActionPerformed
+    private void btnSpBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSpBurgerActionPerformed
         jTabbedPane1.setSelectedIndex(0);
-    }//GEN-LAST:event_jbtnSpBurgerActionPerformed
+        
+        //reset color to white
+        btnChckBurger.setBackground(Color.white);
+        btnHotdogs.setBackground(Color.white);
+        btnGrills.setBackground(Color.white);
+        btnDesserts.setBackground(Color.white);
+        btnSides.setBackground(Color.white);
+        btnDrinks.setBackground(Color.white);
+        btnBurger.setBackground(Color.white);
+        btnMiniBurger.setBackground(Color.white);
+        //selected button is highlighted
+        btnSpBurger.setBackground(new java.awt.Color(255,0,51)); 
+    }//GEN-LAST:event_btnSpBurgerActionPerformed
 
     private void btnBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBurgerActionPerformed
         jTabbedPane1.setSelectedIndex(2);
+        
+        //reset color to white
+        btnChckBurger.setBackground(Color.white);
+        btnHotdogs.setBackground(Color.white);
+        btnGrills.setBackground(Color.white);
+        btnDesserts.setBackground(Color.white);
+        btnSides.setBackground(Color.white);
+        btnDrinks.setBackground(Color.white);
+        btnSpBurger.setBackground(Color.white);
+        btnMiniBurger.setBackground(Color.white);
+        //selected button is highlighted
+        btnBurger.setBackground(new java.awt.Color(255,0,51)); 
     }//GEN-LAST:event_btnBurgerActionPerformed
 
     private void btnMiniBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMiniBurgerActionPerformed
         jTabbedPane1.setSelectedIndex(3);
+        
+        //reset color to white
+        btnChckBurger.setBackground(Color.white);
+        btnHotdogs.setBackground(Color.white);
+        btnGrills.setBackground(Color.white);
+        btnDesserts.setBackground(Color.white);
+        btnSides.setBackground(Color.white);
+        btnDrinks.setBackground(Color.white);
+        btnBurger.setBackground(Color.white);
+        btnSpBurger.setBackground(Color.white);
+        //selected button is highlighted
+        btnMiniBurger.setBackground(new java.awt.Color(255,0,51)); 
     }//GEN-LAST:event_btnMiniBurgerActionPerformed
 
     private void btnHotdogsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHotdogsActionPerformed
         jTabbedPane1.setSelectedIndex(4);
+        
+        //reset color to white
+        btnChckBurger.setBackground(Color.white);
+        btnSpBurger.setBackground(Color.white);
+        btnGrills.setBackground(Color.white);
+        btnDesserts.setBackground(Color.white);
+        btnSides.setBackground(Color.white);
+        btnDrinks.setBackground(Color.white);
+        btnBurger.setBackground(Color.white);
+        btnMiniBurger.setBackground(Color.white);
+        //selected button is highlighted
+        btnHotdogs.setBackground(new java.awt.Color(255,0,51)); 
     }//GEN-LAST:event_btnHotdogsActionPerformed
 
     private void btnGrillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrillsActionPerformed
         jTabbedPane1.setSelectedIndex(5);
+        
+        //reset color to white
+        btnChckBurger.setBackground(Color.white);
+        btnHotdogs.setBackground(Color.white);
+        btnSpBurger.setBackground(Color.white);
+        btnDesserts.setBackground(Color.white);
+        btnSides.setBackground(Color.white);
+        btnDrinks.setBackground(Color.white);
+        btnBurger.setBackground(Color.white);
+        btnMiniBurger.setBackground(Color.white);
+        //selected button is highlighted
+        btnGrills.setBackground(new java.awt.Color(255,0,51)); 
     }//GEN-LAST:event_btnGrillsActionPerformed
 
     private void btnDessertsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDessertsActionPerformed
         jTabbedPane1.setSelectedIndex(6);
+        
+        //reset color to white
+        btnChckBurger.setBackground(Color.white);
+        btnHotdogs.setBackground(Color.white);
+        btnGrills.setBackground(Color.white);
+        btnSpBurger.setBackground(Color.white);
+        btnSides.setBackground(Color.white);
+        btnDrinks.setBackground(Color.white);
+        btnBurger.setBackground(Color.white);
+        btnMiniBurger.setBackground(Color.white);
+        //selected button is highlighted
+        btnDesserts.setBackground(new java.awt.Color(255,0,51)); 
     }//GEN-LAST:event_btnDessertsActionPerformed
 
     private void btnSidesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidesActionPerformed
         jTabbedPane1.setSelectedIndex(7);
+        
+        //reset color to white
+        btnChckBurger.setBackground(Color.white);
+        btnHotdogs.setBackground(Color.white);
+        btnGrills.setBackground(Color.white);
+        btnDesserts.setBackground(Color.white);
+        btnSpBurger.setBackground(Color.white);
+        btnDrinks.setBackground(Color.white);
+        btnBurger.setBackground(Color.white);
+        btnMiniBurger.setBackground(Color.white);
+        //selected button is highlighted
+        btnSides.setBackground(new java.awt.Color(255,0,51)); 
     }//GEN-LAST:event_btnSidesActionPerformed
 
     private void btnDrinksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrinksActionPerformed
         jTabbedPane1.setSelectedIndex(8);
+        
+        //reset color to white
+        btnChckBurger.setBackground(Color.white);
+        btnHotdogs.setBackground(Color.white);
+        btnGrills.setBackground(Color.white);
+        btnDesserts.setBackground(Color.white);
+        btnSides.setBackground(Color.white);
+        btnSpBurger.setBackground(Color.white);
+        btnBurger.setBackground(Color.white);
+        btnMiniBurger.setBackground(Color.white);
+        //selected button is highlighted
+        btnDrinks.setBackground(new java.awt.Color(255,0,51)); 
     }//GEN-LAST:event_btnDrinksActionPerformed
 
     public static void main(String args[]) {
@@ -472,6 +582,7 @@ public class OrderingView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBurger;
+    private javax.swing.JButton btnChckBurger;
     private javax.swing.JButton btnDesserts;
     private javax.swing.JButton btnDrinks;
     private javax.swing.JButton btnGrills;
@@ -479,6 +590,7 @@ public class OrderingView extends javax.swing.JFrame {
     private javax.swing.JButton btnMiniBurger;
     private javax.swing.JButton btnPayNow;
     private javax.swing.JButton btnSides;
+    private javax.swing.JButton btnSpBurger;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -504,8 +616,6 @@ public class OrderingView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JButton jbtnChckBurger;
-    private javax.swing.JButton jbtnSpBurger;
     private javax.swing.JPanel jpanelSystemTitle;
     private javax.swing.JPanel sidebar;
     private javax.swing.JPanel sidebar1;
