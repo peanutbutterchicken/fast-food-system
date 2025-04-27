@@ -3,7 +3,7 @@ package fastfood.system;
 
 import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JTextField;
+import java.util.ArrayList;
 
 
 public class OrderingView extends javax.swing.JFrame {
@@ -50,6 +50,22 @@ public class OrderingView extends javax.swing.JFrame {
     SpBurger4 sp4 = new SpBurger4();
     SpBurger5 sp5 = new SpBurger5();
     SpBurger6 sp6 = new SpBurger6();
+    
+    public void listItemsWithQuantity (){
+        ArrayList<SpecialBurgers> items = new ArrayList<>();
+        
+        if(sp1.quantity > 0) items.add(sp1);
+        if(sp2.quantity > 0) items.add(sp2);
+        if(sp3.quantity > 0) items.add(sp3);
+        if(sp4.quantity > 0) items.add(sp4);
+        if(sp5.quantity > 0) items.add(sp5);
+        if(sp6.quantity > 0) items.add(sp6);
+        
+        for(int i=0; i<items.size(); i++){ // test
+            System.out.println(items.get(i));
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -408,6 +424,11 @@ public class OrderingView extends javax.swing.JFrame {
         btnPayNow.setText("ORDER LIST");
         btnPayNow.setBorderPainted(false);
         btnPayNow.setFocusPainted(false);
+        btnPayNow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPayNowActionPerformed(evt);
+            }
+        });
 
         btnPayNow1.setBackground(new java.awt.Color(0, 204, 51));
         btnPayNow1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
@@ -1529,6 +1550,10 @@ public class OrderingView extends javax.swing.JFrame {
             jtxtQty16.setText(value);
         }
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void btnPayNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayNowActionPerformed
+
+    }//GEN-LAST:event_btnPayNowActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
