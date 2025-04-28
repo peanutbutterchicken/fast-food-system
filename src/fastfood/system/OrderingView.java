@@ -77,46 +77,43 @@ public class OrderingView extends javax.swing.JFrame {
     double taxPercentage=0.12f, discountPercentage=0f;
     
     //List for Special Burgers
-        public void getItemsWithQuantity(){
-            ArrayList<Products> items = new ArrayList<>(); // items is a list that can store anything that is a SpecialBurgers class and sp1, sp2, sp3, ... are subclasses of SpecialBurgers.
+    public void getItemsWithQuantity(){
+        ArrayList<Products> items = new ArrayList<>(); // items is a list that can store anything that is a SpecialBurgers class and sp1, sp2, sp3, ... are subclasses of SpecialBurgers.
 
-            if(sp1.quantity > 0) items.add(sp1); // if product has quantity > 0 or it's selected for order, then store it in the list.
-            if(sp2.quantity > 0) items.add(sp2);
-            if(sp3.quantity > 0) items.add(sp3);    
-            if(sp4.quantity > 0) items.add(sp4);
-            if(sp5.quantity > 0) items.add(sp5);
-            if(sp6.quantity > 0) items.add(sp6);
+        if(sp1.quantity > 0) items.add(sp1); // if product has quantity > 0 or it's selected for order, then store it in the list.
+        if(sp2.quantity > 0) items.add(sp2);
+        if(sp3.quantity > 0) items.add(sp3);    
+        if(sp4.quantity > 0) items.add(sp4);
+        if(sp5.quantity > 0) items.add(sp5);
+        if(sp6.quantity > 0) items.add(sp6);
 
 //            for(int i=0; i<items.size(); i++){ // test
 //                System.out.println(items.get(i));
 //            }   
 
-            // To-DO: Add list for every product category below;
-   
-            
-            //Displaying orders (data) through JTable
-            DefaultTableModel table = (DefaultTableModel)jTableMyOrder.getModel();
-            table.setRowCount(0);   // refresh list every method call for updated list.        
-            for (Products item : items) {
-                table.addRow(new Object[]{item.quantity, item.name, item.price});
-            }
-            table.fireTableDataChanged();   
-            
-            
-            // Subtotal, Tax, Discount, Total Computation
-            productSubtotal=productTax=productDiscount=productTotalPrice=0f;          
-            //calculate subtotal
-            for (Products item : items) {
-                productSubtotal += item.price * item.quantity;
-            }
-            //calculate tax
-            productTax = productSubtotal * taxPercentage;
-            //calculate total
-            productTotalPrice = productSubtotal + productTax;
-            System.out.println(productSubtotal + " " + productTax + " " + productDiscount + " " + productTotalPrice);
+        // To-DO: Add list for every product category below;
+
+        // Subtotal, Tax, Discount, Total Computation
+        productSubtotal=productTax=productDiscount=productTotalPrice=0f;          
+        //calculate subtotal
+        for (Products item : items) {
+            productSubtotal += item.price * item.quantity;
         }
-        
-     
+        //calculate tax
+        productTax = productSubtotal * taxPercentage;
+        //calculate total
+        productTotalPrice = productSubtotal + productTax;
+        System.out.println(productSubtotal + " " + productTax + " " + productDiscount + " " + productTotalPrice);
+
+        //Displaying orders (data) through JTable
+        DefaultTableModel table = (DefaultTableModel)jTableMyOrder.getModel();
+        table.setRowCount(0);   // refresh list every method call for updated list.        
+        for (Products item : items) {
+            table.addRow(new Object[]{item.quantity, item.name, item.price, (item.quantity*item.price)});
+        }
+        table.fireTableDataChanged();   
+    }
+          
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -386,14 +383,14 @@ public class OrderingView extends javax.swing.JFrame {
 
         jTableMyOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+                {null, null, null, null}
             },
             new String [] {
-                "Qty", "Product", "Price"
+                "Qty", "Product", "Price", "Amount"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -415,9 +412,10 @@ public class OrderingView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableMyOrder);
         if (jTableMyOrder.getColumnModel().getColumnCount() > 0) {
             jTableMyOrder.getColumnModel().getColumn(0).setResizable(false);
-            jTableMyOrder.getColumnModel().getColumn(1).setMinWidth(130);
-            jTableMyOrder.getColumnModel().getColumn(1).setPreferredWidth(130);
-            jTableMyOrder.getColumnModel().getColumn(1).setMaxWidth(130);
+            jTableMyOrder.getColumnModel().getColumn(0).setPreferredWidth(50);
+            jTableMyOrder.getColumnModel().getColumn(1).setMinWidth(60);
+            jTableMyOrder.getColumnModel().getColumn(1).setPreferredWidth(60);
+            jTableMyOrder.getColumnModel().getColumn(1).setMaxWidth(60);
             jTableMyOrder.getColumnModel().getColumn(2).setResizable(false);
         }
 
@@ -460,6 +458,8 @@ public class OrderingView extends javax.swing.JFrame {
         jtxtSubtotal.setEditable(false);
         jtxtSubtotal.setBackground(new java.awt.Color(255, 255, 255));
         jtxtSubtotal.setForeground(java.awt.Color.black);
+        jtxtSubtotal.setText("Php ");
+        jtxtSubtotal.setToolTipText("");
         jtxtSubtotal.setBorder(null);
         jtxtSubtotal.setOpaque(true);
         jtxtSubtotal.addActionListener(new java.awt.event.ActionListener() {
@@ -1591,14 +1591,14 @@ public class OrderingView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void btnPayNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayNowActionPerformed
-//        ItemsWithQuantity itemsWithQuantity = new ItemsWithQuantity();
-//        itemsWithQuantity.getItemsWithQuantity();
-          getItemsWithQuantity();
+          // method call
+          getItemsWithQuantity(); 
+          
           //updates product total cost
-          jtxtSubtotal.setText(String.format("%.2f", productSubtotal));
-          jtxtTAX.setText(String.format("%.2f", productTax));
-          jtxtDiscount.setText(String.format("%.2f", productDiscount));
-          jtxtTotal.setText(String.format("%.2f", productTotalPrice));
+          jtxtSubtotal.setText(String.format("Php %.2f", productSubtotal));
+          jtxtTAX.setText(String.format("Php %.2f", productTax));
+          jtxtDiscount.setText(String.format("Php %.2f", productDiscount));
+          jtxtTotal.setText(String.format("Php %.2f", productTotalPrice));
  
           jtxtSubtotal.revalidate();
           jtxtSubtotal.repaint();
