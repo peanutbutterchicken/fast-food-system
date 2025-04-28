@@ -4,6 +4,7 @@ package fastfood.system;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 
 public class OrderingView extends javax.swing.JFrame {
@@ -18,30 +19,52 @@ public class OrderingView extends javax.swing.JFrame {
             button.setContentAreaFilled(false);
         }
     }
-    public class SpecialBurgers {
+    public class SpecialBurgers { // parent class
         String name;
         int quantity;
         int price;
     }
-    public class SpBurger1 extends SpecialBurgers {
-        int quantity=0;
-        String name = "DBB";
-        int price = 230;
+    public class SpBurger1 extends SpecialBurgers { // child class
+        public SpBurger1(){ // constructor
+            this.quantity=0;
+            this.name = "DBB";
+            this.price = 230;
+        }
     }
     public class SpBurger2 extends SpecialBurgers {
-        int quantity=0;
+        public SpBurger2(){
+            this.quantity=0;
+            this.name = "DBB";
+            this.price = 240;
+        }
     }
     public class SpBurger3 extends SpecialBurgers {
-        int quantity=0;
+        public SpBurger3(){
+            this.quantity=0;
+            this.name = "DBB";
+            this.price = 250;
+        }
     }
     public class SpBurger4 extends SpecialBurgers {
-        int quantity=0;
+        public SpBurger4(){
+            this.quantity=0;
+            this.name = "DBB";
+            this.price = 260;
+        }
     }
     public class SpBurger5 extends SpecialBurgers {
-        int quantity=0;
+        public SpBurger5(){
+            this.quantity=0;
+            this.name = "DBB";
+            this.price = 270;
+        }
     }
     public class SpBurger6 extends SpecialBurgers {
-        int quantity=0;
+        public SpBurger6(){
+            this.quantity=0;
+            this.name = "DBB";
+            this.price = 270;
+        }
     }
     // Initialize Objects for Button ActionListeners
     SpBurger1 sp1 = new SpBurger1();
@@ -51,21 +74,30 @@ public class OrderingView extends javax.swing.JFrame {
     SpBurger5 sp5 = new SpBurger5();
     SpBurger6 sp6 = new SpBurger6();
     
-    public void listItemsWithQuantity (){
-        ArrayList<SpecialBurgers> items = new ArrayList<>();
-        
-        if(sp1.quantity > 0) items.add(sp1);
-        if(sp2.quantity > 0) items.add(sp2);
-        if(sp3.quantity > 0) items.add(sp3);
-        if(sp4.quantity > 0) items.add(sp4);
-        if(sp5.quantity > 0) items.add(sp5);
-        if(sp6.quantity > 0) items.add(sp6);
-        
-        for(int i=0; i<items.size(); i++){ // test
-            System.out.println(items.get(i));
+        //List for Special Burgers
+        public void getItemsWithQuantity(){
+            ArrayList<SpecialBurgers> items = new ArrayList<>(); // items is a list that can store anything that is a SpecialBurgers class and sp1, sp2, sp3, ... are subclasses of SpecialBurgers.
+
+            if(sp1.quantity > 0) items.add(sp1); // if product has quantity > 0 or it's selected for order, then store it in the list.
+            if(sp2.quantity > 0) items.add(sp2);
+            if(sp3.quantity > 0) items.add(sp3);    
+            if(sp4.quantity > 0) items.add(sp4);
+            if(sp5.quantity > 0) items.add(sp5);
+            if(sp6.quantity > 0) items.add(sp6);
+
+            for(int i=0; i<items.size(); i++){ // test
+                System.out.println(items.get(i));
+            }   
+            // To-DO: Add list for every product category below;
+   
+            //Displaying orders (data) through JTable
+            DefaultTableModel table = (DefaultTableModel)jTableMyOrder.getModel();
+            for (SpecialBurgers item : items) {
+                table.addRow(new Object[]{item.quantity, item.name, item.price});
+            }
         }
-    }
-    
+        
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,7 +126,7 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableMyOrder = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         btnPayNow = new javax.swing.JButton();
         btnPayNow1 = new javax.swing.JButton();
@@ -333,77 +365,42 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel4.setText("MY ORDER");
         sidebar3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 107, 36));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMyOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null}
             },
             new String [] {
                 "Qty", "Product", "Price"
             }
-        ));
-        jTable1.setEnabled(false);
-        jTable1.setFocusable(false);
-        jTable1.setShowGrid(false);
-        jTable1.getTableHeader().setResizingAllowed(false);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jTable1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTableMyOrder.setEnabled(false);
+        jTableMyOrder.setFocusable(false);
+        jTableMyOrder.setShowGrid(false);
+        jTableMyOrder.getTableHeader().setResizingAllowed(false);
+        jTableMyOrder.getTableHeader().setReorderingAllowed(false);
+        jTableMyOrder.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTable1InputMethodTextChanged(evt);
+                jTableMyOrderInputMethodTextChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableMyOrder);
+        if (jTableMyOrder.getColumnModel().getColumnCount() > 0) {
+            jTableMyOrder.getColumnModel().getColumn(0).setResizable(false);
+            jTableMyOrder.getColumnModel().getColumn(1).setMinWidth(130);
+            jTableMyOrder.getColumnModel().getColumn(1).setPreferredWidth(130);
+            jTableMyOrder.getColumnModel().getColumn(1).setMaxWidth(130);
+            jTableMyOrder.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1463,9 +1460,9 @@ public class OrderingView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTable1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable1InputMethodTextChanged
+    private void jTableMyOrderInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTableMyOrderInputMethodTextChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1InputMethodTextChanged
+    }//GEN-LAST:event_jTableMyOrderInputMethodTextChanged
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if(sp2.quantity >= 0){
@@ -1552,6 +1549,9 @@ public class OrderingView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void btnPayNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayNowActionPerformed
+//        ItemsWithQuantity itemsWithQuantity = new ItemsWithQuantity();
+//        itemsWithQuantity.getItemsWithQuantity();
+          getItemsWithQuantity();
 
     }//GEN-LAST:event_btnPayNowActionPerformed
 
@@ -1664,7 +1664,7 @@ public class OrderingView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableMyOrder;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
