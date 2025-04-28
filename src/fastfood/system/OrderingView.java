@@ -634,7 +634,9 @@ public class OrderingView extends javax.swing.JFrame {
 
         jtxtQty11.setEditable(false);
         jtxtQty11.setBackground(new java.awt.Color(255, 255, 255));
-        jtxtQty11.setForeground(new java.awt.Color(0, 0, 0));
+        jtxtQty11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtxtQty11.setForeground(new java.awt.Color(51, 153, 0));
+        jtxtQty11.setText("0");
         jtxtQty11.setBorder(null);
         jtxtQty11.setFocusable(false);
         jtxtQty11.addActionListener(new java.awt.event.ActionListener() {
@@ -731,6 +733,9 @@ public class OrderingView extends javax.swing.JFrame {
 
         jtxtQty12.setEditable(false);
         jtxtQty12.setBackground(new java.awt.Color(255, 255, 255));
+        jtxtQty12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtxtQty12.setForeground(new java.awt.Color(51, 153, 0));
+        jtxtQty12.setText("0");
         jtxtQty12.setBorder(null);
         jtxtQty12.setFocusable(false);
 
@@ -817,6 +822,9 @@ public class OrderingView extends javax.swing.JFrame {
 
         jtxtQty13.setEditable(false);
         jtxtQty13.setBackground(new java.awt.Color(255, 255, 255));
+        jtxtQty13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtxtQty13.setForeground(new java.awt.Color(51, 153, 0));
+        jtxtQty13.setText("0");
         jtxtQty13.setBorder(null);
         jtxtQty13.setFocusable(false);
         jtxtQty13.addActionListener(new java.awt.event.ActionListener() {
@@ -903,6 +911,9 @@ public class OrderingView extends javax.swing.JFrame {
 
         jtxtQty14.setEditable(false);
         jtxtQty14.setBackground(new java.awt.Color(255, 255, 255));
+        jtxtQty14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtxtQty14.setForeground(new java.awt.Color(51, 153, 0));
+        jtxtQty14.setText("0");
         jtxtQty14.setBorder(null);
         jtxtQty14.setFocusable(false);
 
@@ -984,6 +995,9 @@ public class OrderingView extends javax.swing.JFrame {
 
         jtxtQty15.setEditable(false);
         jtxtQty15.setBackground(new java.awt.Color(255, 255, 255));
+        jtxtQty15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtxtQty15.setForeground(new java.awt.Color(51, 153, 0));
+        jtxtQty15.setText("0");
         jtxtQty15.setBorder(null);
         jtxtQty15.setFocusable(false);
         jtxtQty15.addActionListener(new java.awt.event.ActionListener() {
@@ -1070,6 +1084,9 @@ public class OrderingView extends javax.swing.JFrame {
 
         jtxtQty16.setEditable(false);
         jtxtQty16.setBackground(new java.awt.Color(255, 255, 255));
+        jtxtQty16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtxtQty16.setForeground(new java.awt.Color(51, 153, 0));
+        jtxtQty16.setText("0");
         jtxtQty16.setBorder(null);
         jtxtQty16.setFocusable(false);
 
