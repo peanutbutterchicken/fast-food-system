@@ -92,9 +92,11 @@ public class OrderingView extends javax.swing.JFrame {
    
             //Displaying orders (data) through JTable
             DefaultTableModel table = (DefaultTableModel)jTableMyOrder.getModel();
+            table.setRowCount(0);         
             for (SpecialBurgers item : items) {
                 table.addRow(new Object[]{item.quantity, item.name, item.price});
             }
+            table.fireTableDataChanged();   
         }
         
      
