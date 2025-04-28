@@ -19,51 +19,50 @@ public class OrderingView extends javax.swing.JFrame {
             button.setContentAreaFilled(false);
         }
     }
-    public class SpecialBurgers { // parent class
+    public class Products { // todo: constructors, this keyword, super method explain.
         String name;
         int quantity;
         int price;
+        
+        public Products(String name, int quantity, int price){
+            this.name = name;
+            this.quantity = quantity;
+            this.price = price;
+        }
+    }
+    public class SpecialBurgers extends Products { // parent class for special burgers  
+        public SpecialBurgers(String name, int quantity, int price){
+            super(name, quantity, price);
+        }
     }
     public class SpBurger1 extends SpecialBurgers { // child class
         public SpBurger1(){ // constructor
-            this.quantity=0;
-            this.name = "DBB";
-            this.price = 230;
+             super("DBB", 0, 230);
         }
     }
     public class SpBurger2 extends SpecialBurgers {
         public SpBurger2(){
-            this.quantity=0;
-            this.name = "DBB";
-            this.price = 240;
+            super("DBB", 0, 240);
         }
     }
     public class SpBurger3 extends SpecialBurgers {
         public SpBurger3(){
-            this.quantity=0;
-            this.name = "DBB";
-            this.price = 250;
+            super("DBB", 0, 250);
         }
     }
     public class SpBurger4 extends SpecialBurgers {
         public SpBurger4(){
-            this.quantity=0;
-            this.name = "DBB";
-            this.price = 260;
+            super("DBB", 0, 260);
         }
     }
     public class SpBurger5 extends SpecialBurgers {
         public SpBurger5(){
-            this.quantity=0;
-            this.name = "DBB";
-            this.price = 270;
+            super("DBB", 0, 270);
         }
     }
     public class SpBurger6 extends SpecialBurgers {
         public SpBurger6(){
-            this.quantity=0;
-            this.name = "DBB";
-            this.price = 270;
+            super("DBB", 0, 280);
         }
     }
     // Initialize Objects for Button ActionListeners
@@ -74,9 +73,12 @@ public class OrderingView extends javax.swing.JFrame {
     SpBurger5 sp5 = new SpBurger5();
     SpBurger6 sp6 = new SpBurger6();
     
-        //List for Special Burgers
+    double productSubtotal=0f, productTax=0f, productDiscount=0f, productTotalPrice=0f;
+    double taxPercentage=0.12f, discountPercentage=0f;
+    
+    //List for Special Burgers
         public void getItemsWithQuantity(){
-            ArrayList<SpecialBurgers> items = new ArrayList<>(); // items is a list that can store anything that is a SpecialBurgers class and sp1, sp2, sp3, ... are subclasses of SpecialBurgers.
+            ArrayList<Products> items = new ArrayList<>(); // items is a list that can store anything that is a SpecialBurgers class and sp1, sp2, sp3, ... are subclasses of SpecialBurgers.
 
             if(sp1.quantity > 0) items.add(sp1); // if product has quantity > 0 or it's selected for order, then store it in the list.
             if(sp2.quantity > 0) items.add(sp2);
@@ -85,18 +87,33 @@ public class OrderingView extends javax.swing.JFrame {
             if(sp5.quantity > 0) items.add(sp5);
             if(sp6.quantity > 0) items.add(sp6);
 
-            for(int i=0; i<items.size(); i++){ // test
-                System.out.println(items.get(i));
-            }   
+//            for(int i=0; i<items.size(); i++){ // test
+//                System.out.println(items.get(i));
+//            }   
+
             // To-DO: Add list for every product category below;
    
+            
             //Displaying orders (data) through JTable
             DefaultTableModel table = (DefaultTableModel)jTableMyOrder.getModel();
-            table.setRowCount(0);         
-            for (SpecialBurgers item : items) {
+            table.setRowCount(0);   // refresh list every method call for updated list.        
+            for (Products item : items) {
                 table.addRow(new Object[]{item.quantity, item.name, item.price});
             }
             table.fireTableDataChanged();   
+            
+            
+            // Subtotal, Tax, Discount, Total Computation
+            productSubtotal=productTax=productDiscount=productTotalPrice=0f;          
+            //calculate subtotal
+            for (Products item : items) {
+                productSubtotal += item.price * item.quantity;
+            }
+            //calculate tax
+            productTax = productSubtotal * taxPercentage;
+            //calculate total
+            productTotalPrice = productSubtotal + productTax;
+            System.out.println(productSubtotal + " " + productTax + " " + productDiscount + " " + productTotalPrice);
         }
         
      
@@ -133,13 +150,13 @@ public class OrderingView extends javax.swing.JFrame {
         btnPayNow = new javax.swing.JButton();
         btnPayNow1 = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jtxtSubtotal = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jtxtTAX = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jtxtDiscount = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        jtxtTotal = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -440,56 +457,56 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel25.setText("Subtotal:");
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField2.setText("Php ");
-        jTextField2.setBorder(null);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jtxtSubtotal.setEditable(false);
+        jtxtSubtotal.setBackground(new java.awt.Color(255, 255, 255));
+        jtxtSubtotal.setForeground(java.awt.Color.black);
+        jtxtSubtotal.setBorder(null);
+        jtxtSubtotal.setOpaque(true);
+        jtxtSubtotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jtxtSubtotalActionPerformed(evt);
             }
         });
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel26.setText("TAX:");
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField4.setText("Php ");
-        jTextField4.setBorder(null);
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jtxtTAX.setEditable(false);
+        jtxtTAX.setBackground(new java.awt.Color(255, 255, 255));
+        jtxtTAX.setForeground(new java.awt.Color(0, 0, 0));
+        jtxtTAX.setText("Php ");
+        jtxtTAX.setBorder(null);
+        jtxtTAX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jtxtTAXActionPerformed(evt);
             }
         });
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel27.setText("Discount:");
 
-        jTextField6.setEditable(false);
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField6.setText("Php ");
-        jTextField6.setBorder(null);
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jtxtDiscount.setEditable(false);
+        jtxtDiscount.setBackground(new java.awt.Color(255, 255, 255));
+        jtxtDiscount.setForeground(new java.awt.Color(0, 0, 0));
+        jtxtDiscount.setText("Php ");
+        jtxtDiscount.setBorder(null);
+        jtxtDiscount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jtxtDiscountActionPerformed(evt);
             }
         });
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel28.setText("Total:");
 
-        jTextField8.setEditable(false);
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField8.setText("Php ");
-        jTextField8.setBorder(null);
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        jtxtTotal.setEditable(false);
+        jtxtTotal.setBackground(new java.awt.Color(255, 255, 255));
+        jtxtTotal.setForeground(new java.awt.Color(0, 0, 0));
+        jtxtTotal.setText("Php ");
+        jtxtTotal.setBorder(null);
+        jtxtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                jtxtTotalActionPerformed(evt);
             }
         });
 
@@ -509,10 +526,10 @@ public class OrderingView extends javax.swing.JFrame {
                             .addComponent(jLabel28))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxtDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxtTAX, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 60, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -524,19 +541,19 @@ public class OrderingView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtTAX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(btnPayNow1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -615,6 +632,7 @@ public class OrderingView extends javax.swing.JFrame {
             }
         });
 
+        jtxtQty11.setEditable(false);
         jtxtQty11.setBackground(new java.awt.Color(255, 255, 255));
         jtxtQty11.setForeground(new java.awt.Color(0, 0, 0));
         jtxtQty11.setBorder(null);
@@ -722,17 +740,22 @@ public class OrderingView extends javax.swing.JFrame {
             jPanel69Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel69Layout.createSequentialGroup()
+            .addGroup(jPanel69Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jtxtQty12, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel69Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel69Layout.createSequentialGroup()
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jtxtQty12, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel69Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(77, 77, 77))))
         );
         jPanel69Layout.setVerticalGroup(
             jPanel69Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1095,7 +1118,7 @@ public class OrderingView extends javax.swing.JFrame {
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addComponent(jPanel68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel69, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel71, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel20Layout.createSequentialGroup()
@@ -1425,21 +1448,21 @@ public class OrderingView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtQty15ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    private void jtxtSubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtSubtotalActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jtxtSubtotalActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void jtxtTAXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtTAXActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jtxtTAXActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void jtxtDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtDiscountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_jtxtDiscountActionPerformed
+
+    private void jtxtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtTotalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
@@ -1554,6 +1577,14 @@ public class OrderingView extends javax.swing.JFrame {
 //        ItemsWithQuantity itemsWithQuantity = new ItemsWithQuantity();
 //        itemsWithQuantity.getItemsWithQuantity();
           getItemsWithQuantity();
+          //updates product total cost
+          jtxtSubtotal.setText(String.format("%.2f", productSubtotal));
+          jtxtTAX.setText(String.format("%.2f", productTax));
+          jtxtDiscount.setText(String.format("%.2f", productDiscount));
+          jtxtTotal.setText(String.format("%.2f", productTotalPrice));
+ 
+          jtxtSubtotal.revalidate();
+          jtxtSubtotal.repaint();
 
     }//GEN-LAST:event_btnPayNowActionPerformed
 
@@ -1669,20 +1700,20 @@ public class OrderingView extends javax.swing.JFrame {
     private javax.swing.JTable jTableMyOrder;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jtxtDiscount;
     private javax.swing.JTextField jtxtQty11;
     private javax.swing.JTextField jtxtQty12;
     private javax.swing.JTextField jtxtQty13;
     private javax.swing.JTextField jtxtQty14;
     private javax.swing.JTextField jtxtQty15;
     private javax.swing.JTextField jtxtQty16;
+    private javax.swing.JTextField jtxtSubtotal;
+    private javax.swing.JTextField jtxtTAX;
+    private javax.swing.JTextField jtxtTotal;
     private javax.swing.JPanel sidebar;
     private javax.swing.JPanel sidebar3;
     // End of variables declaration//GEN-END:variables
