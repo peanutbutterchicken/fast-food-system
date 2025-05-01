@@ -1,119 +1,69 @@
-
-package fastfood.system;
+package view;
 
 import java.awt.Color;
 import javax.swing.JButton;
 import java.util.ArrayList;
+
+import models.Products;
+import models.SpecialBurgers;
+import controller.OrderController;
 import javax.swing.table.DefaultTableModel;
 
-
 public class OrderingView extends javax.swing.JFrame {
-
+    private OrderController controller; // bat final
+    
+    Products SPburger1, SPburger2, SPburger3, SPburger4, SPburger5, SPburger6; // Initialize for access
+    
     public OrderingView() {
         initComponents();
-        // removes highlighting effect when pressed
-        JButton[] buttons = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton4,
-        jButton10, jButton11, jButton12, jButton13};
-
-        for (JButton button : buttons) {
-            button.setContentAreaFilled(false);
-        }
-    }
-    public class Products { // todo: constructors, this keyword, super method explain.
-        String name;
-        int quantity;
-        int price;
+        controller = new OrderController(); // call controller class to access controller methods
         
-        public Products(String name, int quantity, int price){
-            this.name = name;
-            this.quantity = quantity;
-            this.price = price;
+        // add six of each food sub-category
+        controller.addProduct(SPburger1 = new SpecialBurgers("DBB", 1));
+        controller.addProduct(SPburger2 = new SpecialBurgers("DBZ", 2));
+        controller.addProduct(SPburger3 = new SpecialBurgers("BXB", 3));
+        controller.addProduct(SPburger4 = new SpecialBurgers("VYC", 4));
+        controller.addProduct(SPburger5 = new SpecialBurgers("PLI", 5));
+        controller.addProduct(SPburger6 = new SpecialBurgers("THG", 6));
+        
+        removeButtonTransparency();
         }
-    }
-    public class SpecialBurgers extends Products { // parent class for special burgers  
-        public SpecialBurgers(String name, int quantity, int price){
-            super(name, quantity, price);
-        }
-    }
-    public class SpBurger1 extends SpecialBurgers { // child class
-        public SpBurger1(){ // constructor
-             super("DBB", 0, 230);
-        }
-    }
-    public class SpBurger2 extends SpecialBurgers {
-        public SpBurger2(){
-            super("DBB", 0, 240);
-        }
-    }
-    public class SpBurger3 extends SpecialBurgers {
-        public SpBurger3(){
-            super("DBB", 0, 250);
-        }
-    }
-    public class SpBurger4 extends SpecialBurgers {
-        public SpBurger4(){
-            super("DBB", 0, 260);
-        }
-    }
-    public class SpBurger5 extends SpecialBurgers {
-        public SpBurger5(){
-            super("DBB", 0, 270);
-        }
-    }
-    public class SpBurger6 extends SpecialBurgers {
-        public SpBurger6(){
-            super("DBB", 0, 280);
-        }
-    }
-    // Initialize Objects for Button ActionListeners
-    SpBurger1 sp1 = new SpBurger1();
-    SpBurger2 sp2 = new SpBurger2();
-    SpBurger3 sp3 = new SpBurger3();
-    SpBurger4 sp4 = new SpBurger4();
-    SpBurger5 sp5 = new SpBurger5();
-    SpBurger6 sp6 = new SpBurger6();
     
-    double productSubtotal=0f, productTax=0f, productDiscount=0f, productTotalPrice=0f;
-    double taxPercentage=0.12f, discountPercentage=0f;
+    private void incrementProductQuantity(Products product){
+        controller.updateQuantity(product, +1);
+        refreshOrderTable();
+    }
     
-    //List for Special Burgers
-    public void getItemsWithQuantity(){
-        ArrayList<Products> items = new ArrayList<>(); // items is a list that can store anything that is a SpecialBurgers class and sp1, sp2, sp3, ... are subclasses of SpecialBurgers.
+    private void decrementProductQuantity(Products product){
+        controller.updateQuantity(product, -1);
+        refreshOrderTable();
+    }
 
-        if(sp1.quantity > 0) items.add(sp1); // if product has quantity > 0 or it's selected for order, then store it in the list.
-        if(sp2.quantity > 0) items.add(sp2);
-        if(sp3.quantity > 0) items.add(sp3);    
-        if(sp4.quantity > 0) items.add(sp4);
-        if(sp5.quantity > 0) items.add(sp5);
-        if(sp6.quantity > 0) items.add(sp6);
-
-//            for(int i=0; i<items.size(); i++){ // test
-//                System.out.println(items.get(i));
-//            }   
-
-        // To-DO: Add list for every product category below;
-
-        // Subtotal, Tax, Discount, Total Computation
-        productSubtotal=productTax=productDiscount=productTotalPrice=0f;          
-        //calculate subtotal
-        for (Products item : items) {
-            productSubtotal += item.price * item.quantity;
-        }
-        //calculate tax
-        productTax = productSubtotal * taxPercentage;
-        //calculate total
-        productTotalPrice = productSubtotal + productTax;
-        System.out.println(productSubtotal + " " + productTax + " " + productDiscount + " " + productTotalPrice);
-
-        //Displaying orders (data) through JTable
+    private void refreshOrderTable() {
         DefaultTableModel table = (DefaultTableModel)jTableMyOrder.getModel();
-        table.setRowCount(0);   // refresh list every method call for updated list.        
-        for (Products item : items) {
-            table.addRow(new Object[]{item.quantity, item.name, item.price, (item.quantity*item.price)});
+        table.setRowCount(0);   // refresh list every method call for updated list.   
+
+        for(Products products : controller.getOrderedProducts()){
+            table.addRow(new Object[]{products.getQuantity(), products.getName(), products.getPrice(), products.getTotalPrice()});
         }
-        table.fireTableDataChanged();   
+        table.fireTableDataChanged();  
+    }
+    
+    private void sidebarHighlight(JButton selectedBtn){  // purpose:  highlighting effect when one category is pressed.
+        JButton[] hoverbtns = {btnSpBurger, btnHotdogs, btnGrills, btnDesserts, btnSides, btnDrinks, btnBurger, btnMiniBurger, btnChckBurger}; // array of JButtons
+        for(JButton btn : hoverbtns){ // for each JButton btn set BG to white
+            btn.setBackground(Color.white);
+        }
+        selectedBtn.setBackground(new java.awt.Color(37, 150, 190)); // highlight selected button
     }
           
+    private void removeButtonTransparency(){ // removed: btn opacity and btn increment and decrement highlighting effects when pressed.
+        JButton[] btns = {btnInc1, btnDec1, btnInc2, btnDec2, btnInc3, btnDec3, btnInc4, btnDec4, btnInc5, btnDec5, btnInc6, btnDec6,};
+        for(JButton btn : btns){
+            btn.setContentAreaFilled(false);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -144,7 +94,7 @@ public class OrderingView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMyOrder = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        btnPayNow = new javax.swing.JButton();
+        btnOrderList = new javax.swing.JButton();
         btnPayNow1 = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         jtxtSubtotal = new javax.swing.JTextField();
@@ -160,10 +110,10 @@ public class OrderingView extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
         jPanel68 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jlblSp1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnInc1 = new javax.swing.JButton();
+        btnDec1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jtxtQty11 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -171,40 +121,40 @@ public class OrderingView extends javax.swing.JFrame {
         jPanel69 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnInc2 = new javax.swing.JButton();
+        btnDec2 = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jtxtQty12 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jPanel71 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnInc3 = new javax.swing.JButton();
+        btnDec3 = new javax.swing.JButton();
         jTextField7 = new javax.swing.JTextField();
         jtxtQty13 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jPanel70 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnInc4 = new javax.swing.JButton();
+        btnDec4 = new javax.swing.JButton();
         jTextField5 = new javax.swing.JTextField();
         jtxtQty14 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jPanel72 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        btnInc5 = new javax.swing.JButton();
+        btnDec5 = new javax.swing.JButton();
         jTextField9 = new javax.swing.JTextField();
         jtxtQty15 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jPanel73 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
+        btnInc6 = new javax.swing.JButton();
+        btnDec6 = new javax.swing.JButton();
         jTextField11 = new javax.swing.JTextField();
         jtxtQty16 = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
@@ -432,15 +382,15 @@ public class OrderingView extends javax.swing.JFrame {
 
         sidebar3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 48, 200, 290));
 
-        btnPayNow.setBackground(new java.awt.Color(255, 102, 102));
-        btnPayNow.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        btnPayNow.setForeground(new java.awt.Color(255, 255, 255));
-        btnPayNow.setText("ORDER LIST");
-        btnPayNow.setBorderPainted(false);
-        btnPayNow.setFocusPainted(false);
-        btnPayNow.addActionListener(new java.awt.event.ActionListener() {
+        btnOrderList.setBackground(new java.awt.Color(255, 102, 102));
+        btnOrderList.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        btnOrderList.setForeground(new java.awt.Color(255, 255, 255));
+        btnOrderList.setText("ORDER LIST");
+        btnOrderList.setBorderPainted(false);
+        btnOrderList.setFocusPainted(false);
+        btnOrderList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPayNowActionPerformed(evt);
+                btnOrderListActionPerformed(evt);
             }
         });
 
@@ -516,7 +466,7 @@ public class OrderingView extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPayNow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnOrderList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPayNow1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -537,7 +487,7 @@ public class OrderingView extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnPayNow, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnOrderList, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
@@ -594,11 +544,11 @@ public class OrderingView extends javax.swing.JFrame {
         jPanel68.setBackground(java.awt.Color.white);
         jPanel68.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Double Beef Burger (300g)");
-        jPanel68.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 131, 201, -1));
+        jlblSp1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jlblSp1.setForeground(new java.awt.Color(51, 51, 51));
+        jlblSp1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblSp1.setText("Double Beef Burger (300g)");
+        jPanel68.add(jlblSp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 131, 201, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 102, 102));
@@ -606,27 +556,27 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel9.setText("Php 230.00");
         jPanel68.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setFocusPainted(false);
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnInc1.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc1.setBorder(null);
+        btnInc1.setFocusPainted(false);
+        btnInc1.setFocusable(false);
+        btnInc1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnInc1ActionPerformed(evt);
             }
         });
-        jPanel68.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
+        jPanel68.add(btnInc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setFocusPainted(false);
-        jButton2.setFocusable(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDec1.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec1.setBorder(null);
+        btnDec1.setFocusPainted(false);
+        btnDec1.setFocusable(false);
+        btnDec1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDec1ActionPerformed(evt);
             }
         });
-        jPanel68.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 177, 35, 33));
+        jPanel68.add(btnDec1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 177, 35, 33));
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField1.setText("Quantity:");
@@ -669,27 +619,27 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel10.setText("Php 999.99");
         jPanel69.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 203, -1));
 
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
-        jButton3.setBorder(null);
-        jButton3.setFocusPainted(false);
-        jButton3.setFocusable(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnInc2.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc2.setBorder(null);
+        btnInc2.setFocusPainted(false);
+        btnInc2.setFocusable(false);
+        btnInc2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnInc2ActionPerformed(evt);
             }
         });
-        jPanel69.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 177, 35, 33));
+        jPanel69.add(btnInc2, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 177, 35, 33));
 
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
-        jButton4.setBorder(null);
-        jButton4.setFocusPainted(false);
-        jButton4.setFocusable(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnDec2.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec2.setBorder(null);
+        btnDec2.setFocusPainted(false);
+        btnDec2.setFocusable(false);
+        btnDec2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnDec2ActionPerformed(evt);
             }
         });
-        jPanel69.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 177, 35, 33));
+        jPanel69.add(btnDec2, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 177, 35, 33));
 
         jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField3.setText("Quantity:");
@@ -726,27 +676,27 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel12.setText("Php 999.99");
         jPanel71.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
 
-        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
-        jButton7.setBorder(null);
-        jButton7.setFocusPainted(false);
-        jButton7.setFocusable(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnInc3.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc3.setBorder(null);
+        btnInc3.setFocusPainted(false);
+        btnInc3.setFocusable(false);
+        btnInc3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnInc3ActionPerformed(evt);
             }
         });
-        jPanel71.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
+        jPanel71.add(btnInc3, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
 
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
-        jButton8.setBorder(null);
-        jButton8.setFocusPainted(false);
-        jButton8.setFocusable(false);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btnDec3.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec3.setBorder(null);
+        btnDec3.setFocusPainted(false);
+        btnDec3.setFocusable(false);
+        btnDec3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btnDec3ActionPerformed(evt);
             }
         });
-        jPanel71.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 177, 35, 33));
+        jPanel71.add(btnDec3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 177, 35, 33));
 
         jTextField7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField7.setText("Quantity:");
@@ -788,27 +738,27 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel11.setText("Php 999.99");
         jPanel70.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
 
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
-        jButton5.setBorder(null);
-        jButton5.setFocusPainted(false);
-        jButton5.setFocusable(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnInc4.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc4.setBorder(null);
+        btnInc4.setFocusPainted(false);
+        btnInc4.setFocusable(false);
+        btnInc4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnInc4ActionPerformed(evt);
             }
         });
-        jPanel70.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
+        jPanel70.add(btnInc4, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
 
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
-        jButton6.setBorder(null);
-        jButton6.setFocusPainted(false);
-        jButton6.setFocusable(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnDec4.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec4.setBorder(null);
+        btnDec4.setFocusPainted(false);
+        btnDec4.setFocusable(false);
+        btnDec4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnDec4ActionPerformed(evt);
             }
         });
-        jPanel70.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 177, 35, 33));
+        jPanel70.add(btnDec4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 177, 35, 33));
 
         jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField5.setText("Quantity:");
@@ -845,27 +795,27 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel14.setText("Php 999.99");
         jPanel72.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
 
-        jButton10.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
-        jButton10.setBorder(null);
-        jButton10.setFocusPainted(false);
-        jButton10.setFocusable(false);
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btnInc5.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc5.setBorder(null);
+        btnInc5.setFocusPainted(false);
+        btnInc5.setFocusable(false);
+        btnInc5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btnInc5ActionPerformed(evt);
             }
         });
-        jPanel72.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
+        jPanel72.add(btnInc5, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
 
-        jButton11.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
-        jButton11.setBorder(null);
-        jButton11.setFocusPainted(false);
-        jButton11.setFocusable(false);
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        btnDec5.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec5.setBorder(null);
+        btnDec5.setFocusPainted(false);
+        btnDec5.setFocusable(false);
+        btnDec5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                btnDec5ActionPerformed(evt);
             }
         });
-        jPanel72.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 177, 35, 33));
+        jPanel72.add(btnDec5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 177, 35, 33));
 
         jTextField9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField9.setText("Quantity:");
@@ -907,27 +857,27 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel16.setText("Php 999.99");
         jPanel73.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
 
-        jButton12.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
-        jButton12.setBorder(null);
-        jButton12.setFocusPainted(false);
-        jButton12.setFocusable(false);
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        btnInc6.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc6.setBorder(null);
+        btnInc6.setFocusPainted(false);
+        btnInc6.setFocusable(false);
+        btnInc6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                btnInc6ActionPerformed(evt);
             }
         });
-        jPanel73.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
+        jPanel73.add(btnInc6, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
 
-        jButton13.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
-        jButton13.setBorder(null);
-        jButton13.setFocusPainted(false);
-        jButton13.setFocusable(false);
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        btnDec6.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec6.setBorder(null);
+        btnDec6.setFocusPainted(false);
+        btnDec6.setFocusable(false);
+        btnDec6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                btnDec6ActionPerformed(evt);
             }
         });
-        jPanel73.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 177, 35, 33));
+        jPanel73.add(btnDec6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 177, 35, 33));
 
         jTextField11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField11.setText("Quantity:");
@@ -1113,148 +1063,50 @@ public class OrderingView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnChckBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChckBurgerActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setSelectedIndex(1); // used to switch tabs
         //reset color to white
         //to-do: DRY principle dito
-        btnSpBurger.setBackground(Color.white);
-        btnHotdogs.setBackground(Color.white);
-        btnGrills.setBackground(Color.white);
-        btnDesserts.setBackground(Color.white);
-        btnSides.setBackground(Color.white);
-        btnDrinks.setBackground(Color.white);
-        btnBurger.setBackground(Color.white);
-        btnMiniBurger.setBackground(Color.white);
-        //selected button is highlighted
-        btnChckBurger.setBackground(new java.awt.Color(37, 150, 190)); 
-                
+        sidebarHighlight(btnChckBurger);             
     }//GEN-LAST:event_btnChckBurgerActionPerformed
 
     private void btnSpBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSpBurgerActionPerformed
         jTabbedPane1.setSelectedIndex(0);
-            
-        //reset color to white
-        btnChckBurger.setBackground(Color.white);
-        btnHotdogs.setBackground(Color.white);
-        btnGrills.setBackground(Color.white);
-        btnDesserts.setBackground(Color.white);
-        btnSides.setBackground(Color.white);
-        btnDrinks.setBackground(Color.white);
-        btnBurger.setBackground(Color.white);
-        btnMiniBurger.setBackground(Color.white);
-        //selected button is highlighted
-        btnSpBurger.setBackground(new java.awt.Color(37, 150, 190)); 
+        sidebarHighlight(btnSpBurger);
     }//GEN-LAST:event_btnSpBurgerActionPerformed
 
     private void btnBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBurgerActionPerformed
         jTabbedPane1.setSelectedIndex(2);
-        
-        //reset color to white
-        btnChckBurger.setBackground(Color.white);
-        btnHotdogs.setBackground(Color.white);
-        btnGrills.setBackground(Color.white);
-        btnDesserts.setBackground(Color.white);
-        btnSides.setBackground(Color.white);
-        btnDrinks.setBackground(Color.white);
-        btnSpBurger.setBackground(Color.white);
-        btnMiniBurger.setBackground(Color.white);
-        //selected button is highlighted
-        btnBurger.setBackground(new java.awt.Color(37, 150, 190)); 
+        sidebarHighlight(btnBurger);   
     }//GEN-LAST:event_btnBurgerActionPerformed
 
     private void btnMiniBurgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMiniBurgerActionPerformed
         jTabbedPane1.setSelectedIndex(3);
-        
-        //reset color to white
-        btnChckBurger.setBackground(Color.white);
-        btnHotdogs.setBackground(Color.white);
-        btnGrills.setBackground(Color.white);
-        btnDesserts.setBackground(Color.white);
-        btnSides.setBackground(Color.white);
-        btnDrinks.setBackground(Color.white);
-        btnBurger.setBackground(Color.white);
-        btnSpBurger.setBackground(Color.white);
-        //selected button is highlighted
-        btnMiniBurger.setBackground(new java.awt.Color(37, 150, 190)); 
+        sidebarHighlight(btnMiniBurger);  
     }//GEN-LAST:event_btnMiniBurgerActionPerformed
 
     private void btnHotdogsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHotdogsActionPerformed
         jTabbedPane1.setSelectedIndex(4);
-        
-        //reset color to white
-        btnChckBurger.setBackground(Color.white);
-        btnSpBurger.setBackground(Color.white);
-        btnGrills.setBackground(Color.white);
-        btnDesserts.setBackground(Color.white);
-        btnSides.setBackground(Color.white);
-        btnDrinks.setBackground(Color.white);
-        btnBurger.setBackground(Color.white);
-        btnMiniBurger.setBackground(Color.white);
-        //selected button is highlighted
-        btnHotdogs.setBackground(new java.awt.Color(37, 150, 190)); 
+        sidebarHighlight(btnHotdogs);
     }//GEN-LAST:event_btnHotdogsActionPerformed
 
     private void btnGrillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrillsActionPerformed
         jTabbedPane1.setSelectedIndex(5);
-        
-        //reset color to white
-        btnChckBurger.setBackground(Color.white);
-        btnHotdogs.setBackground(Color.white);
-        btnSpBurger.setBackground(Color.white);
-        btnDesserts.setBackground(Color.white);
-        btnSides.setBackground(Color.white);
-        btnDrinks.setBackground(Color.white);
-        btnBurger.setBackground(Color.white);
-        btnMiniBurger.setBackground(Color.white);
-        //selected button is highlighted
-        btnGrills.setBackground(new java.awt.Color(37, 150, 190)); 
+        sidebarHighlight(btnGrills);
     }//GEN-LAST:event_btnGrillsActionPerformed
 
     private void btnDessertsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDessertsActionPerformed
         jTabbedPane1.setSelectedIndex(6);
-        
-        //reset color to white
-        btnChckBurger.setBackground(Color.white);
-        btnHotdogs.setBackground(Color.white);
-        btnGrills.setBackground(Color.white);
-        btnSpBurger.setBackground(Color.white);
-        btnSides.setBackground(Color.white);
-        btnDrinks.setBackground(Color.white);
-        btnBurger.setBackground(Color.white);
-        btnMiniBurger.setBackground(Color.white);
-        //selected button is highlighted
-        btnDesserts.setBackground(new java.awt.Color(37, 150, 190)); 
+        sidebarHighlight(btnDesserts);
     }//GEN-LAST:event_btnDessertsActionPerformed
 
     private void btnSidesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSidesActionPerformed
         jTabbedPane1.setSelectedIndex(7);
-        
-        //reset color to white
-        btnChckBurger.setBackground(Color.white);
-        btnHotdogs.setBackground(Color.white);
-        btnGrills.setBackground(Color.white);
-        btnDesserts.setBackground(Color.white);
-        btnSpBurger.setBackground(Color.white);
-        btnDrinks.setBackground(Color.white);
-        btnBurger.setBackground(Color.white);
-        btnMiniBurger.setBackground(Color.white);
-        //selected button is highlighted
-        btnSides.setBackground(new java.awt.Color(37, 150, 190)); 
+        sidebarHighlight(btnSides);
     }//GEN-LAST:event_btnSidesActionPerformed
 
     private void btnDrinksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrinksActionPerformed
         jTabbedPane1.setSelectedIndex(8);
-        
-        //reset color to white
-        btnChckBurger.setBackground(Color.white);
-        btnHotdogs.setBackground(Color.white);
-        btnGrills.setBackground(Color.white);
-        btnDesserts.setBackground(Color.white);
-        btnSides.setBackground(Color.white);
-        btnSpBurger.setBackground(Color.white);
-        btnBurger.setBackground(Color.white);
-        btnMiniBurger.setBackground(Color.white);
-        //selected button is highlighted
-        btnDrinks.setBackground(new java.awt.Color(37, 150, 190)); 
+        sidebarHighlight(btnDrinks);
     }//GEN-LAST:event_btnDrinksActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -1305,129 +1157,104 @@ public class OrderingView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtTotalActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        if(sp1.quantity >= 0){
-            sp1.quantity++;
-            String value = Integer.toString(sp1.quantity);
-            jtxtQty11.setText(value);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnInc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInc1ActionPerformed
+        incrementProductQuantity(SPburger1);
+        String value = Integer.toString(SPburger1.getQuantity());
+        jtxtQty11.setText(value);
+    }//GEN-LAST:event_btnInc1ActionPerformed
 
     private void jtxtQty11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtQty11ActionPerformed
         
     }//GEN-LAST:event_jtxtQty11ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(sp1.quantity > 0){
-            sp1.quantity--;
-            String value = Integer.toString(sp1.quantity);
-            jtxtQty11.setText(value);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnDec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDec1ActionPerformed
+        decrementProductQuantity(SPburger1);
+        String value = Integer.toString(SPburger1.getQuantity());
+        jtxtQty11.setText(value);
+    }//GEN-LAST:event_btnDec1ActionPerformed
 
     private void jTableMyOrderInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTableMyOrderInputMethodTextChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableMyOrderInputMethodTextChanged
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(sp2.quantity >= 0){
-            sp2.quantity++;
-            String value = Integer.toString(sp2.quantity);
-            jtxtQty12.setText(value);
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnInc2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInc2ActionPerformed
+        incrementProductQuantity(SPburger2);
+        String value = Integer.toString(SPburger2.getQuantity());
+        jtxtQty12.setText(value);
+    }//GEN-LAST:event_btnInc2ActionPerformed
 
     private void jtxtQty13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtQty13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtQty13ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(sp2.quantity > 0){
-            sp2.quantity--;
-            String value = Integer.toString(sp2.quantity);
-            jtxtQty12.setText(value);
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnDec2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDec2ActionPerformed
+       decrementProductQuantity(SPburger2);
+       String value = Integer.toString(SPburger2.getQuantity());
+       jtxtQty12.setText(value);
+    }//GEN-LAST:event_btnDec2ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        if(sp3.quantity >= 0){
-            sp3.quantity++;
-            String value = Integer.toString(sp3.quantity);
-            jtxtQty13.setText(value);
-        }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void btnInc3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInc3ActionPerformed
+        incrementProductQuantity(SPburger3);
+        String value = Integer.toString(SPburger3.getQuantity());
+        jtxtQty13.setText(value);
+    }//GEN-LAST:event_btnInc3ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        if(sp3.quantity > 0){
-            sp3.quantity--;
-            String value = Integer.toString(sp3.quantity);
-            jtxtQty13.setText(value);
-        }
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void btnDec3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDec3ActionPerformed
+        decrementProductQuantity(SPburger3);
+        String value = Integer.toString(SPburger3.getQuantity());
+        jtxtQty13.setText(value);
+    }//GEN-LAST:event_btnDec3ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if(sp4.quantity >= 0){
-            sp4.quantity++;
-            String value = Integer.toString(sp4.quantity);
-            jtxtQty14.setText(value);
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void btnInc4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInc4ActionPerformed
+        incrementProductQuantity(SPburger4);
+        String value = Integer.toString(SPburger4.getQuantity());
+        jtxtQty14.setText(value);
+    }//GEN-LAST:event_btnInc4ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        if(sp4.quantity > 0){
-            sp4.quantity--;
-            String value = Integer.toString(sp4.quantity);
-            jtxtQty14.setText(value);
-        }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void btnDec4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDec4ActionPerformed
+        decrementProductQuantity(SPburger4);
+        String value = Integer.toString(SPburger4.getQuantity());
+        jtxtQty14.setText(value);
+    }//GEN-LAST:event_btnDec4ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        if(sp5.quantity >= 0){
-            sp5.quantity++;
-            String value = Integer.toString(sp5.quantity);
-            jtxtQty15.setText(value);
-        }
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void btnInc5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInc5ActionPerformed
+        incrementProductQuantity(SPburger5);
+        String value = Integer.toString(SPburger5.getQuantity());
+        jtxtQty15.setText(value);
+    }//GEN-LAST:event_btnInc5ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        if(sp5.quantity > 0){
-            sp5.quantity--;
-            String value = Integer.toString(sp5.quantity);
-            jtxtQty15.setText(value);
-        }
-    }//GEN-LAST:event_jButton11ActionPerformed
+    private void btnDec5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDec5ActionPerformed
+        decrementProductQuantity(SPburger1);
+        String value = Integer.toString(SPburger5.getQuantity());
+        jtxtQty15.setText(value);
+    }//GEN-LAST:event_btnDec5ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        if(sp6.quantity >= 0){
-            sp6.quantity++;
-            String value = Integer.toString(sp6.quantity);
-            jtxtQty16.setText(value);
-        }
-    }//GEN-LAST:event_jButton12ActionPerformed
+    private void btnInc6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInc6ActionPerformed
+        incrementProductQuantity(SPburger6);
+        String value = Integer.toString(SPburger6.getQuantity());
+        jtxtQty16.setText(value);
+    }//GEN-LAST:event_btnInc6ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        if(sp6.quantity > 0){
-            sp6.quantity--;
-            String value = Integer.toString(sp6.quantity);
-            jtxtQty16.setText(value);
-        }
-    }//GEN-LAST:event_jButton13ActionPerformed
+    private void btnDec6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDec6ActionPerformed
+        decrementProductQuantity(SPburger6);
+        String value = Integer.toString(SPburger6.getQuantity());
+        jtxtQty16.setText(value);
+    }//GEN-LAST:event_btnDec6ActionPerformed
 
-    private void btnPayNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayNowActionPerformed
-          // method call
-          getItemsWithQuantity(); 
-          
-          //updates product total cost
-          jtxtSubtotal.setText(String.format("Php %.2f", productSubtotal));
-          jtxtTAX.setText(String.format("Php %.2f", productTax));
-          jtxtDiscount.setText(String.format("Php %.2f", productDiscount));
-          jtxtTotal.setText(String.format("Php %.2f", productTotalPrice));
- 
-          jtxtSubtotal.revalidate();
-          jtxtSubtotal.repaint();
+    private void btnOrderListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderListActionPerformed
+        // method call
+        controller.getOrderedProducts();
 
-    }//GEN-LAST:event_btnPayNowActionPerformed
+        //updates product total cost
+        jtxtSubtotal.setText(String.format("Php %.2f", controller.calculateSubtotal()));
+        jtxtTAX.setText(String.format("Php %.2f", controller.calculateTax()));
+        jtxtDiscount.setText(String.format("Php %.2f", controller.calculateDiscount()));
+        jtxtTotal.setText(String.format("Php %.2f", controller.calculateTotal()));
+
+        jtxtSubtotal.revalidate();
+        jtxtSubtotal.repaint();
+
+    }//GEN-LAST:event_btnOrderListActionPerformed
 
     public static void main(String args[]) {
 
@@ -1443,27 +1270,27 @@ public class OrderingView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBurger;
     private javax.swing.JButton btnChckBurger;
+    private javax.swing.JButton btnDec1;
+    private javax.swing.JButton btnDec2;
+    private javax.swing.JButton btnDec3;
+    private javax.swing.JButton btnDec4;
+    private javax.swing.JButton btnDec5;
+    private javax.swing.JButton btnDec6;
     private javax.swing.JButton btnDesserts;
     private javax.swing.JButton btnDrinks;
     private javax.swing.JButton btnGrills;
     private javax.swing.JButton btnHotdogs;
+    private javax.swing.JButton btnInc1;
+    private javax.swing.JButton btnInc2;
+    private javax.swing.JButton btnInc3;
+    private javax.swing.JButton btnInc4;
+    private javax.swing.JButton btnInc5;
+    private javax.swing.JButton btnInc6;
     private javax.swing.JButton btnMiniBurger;
-    private javax.swing.JButton btnPayNow;
+    private javax.swing.JButton btnOrderList;
     private javax.swing.JButton btnPayNow1;
     private javax.swing.JButton btnSides;
     private javax.swing.JButton btnSpBurger;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1488,7 +1315,6 @@ public class OrderingView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1522,6 +1348,7 @@ public class OrderingView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel jlblSp1;
     private javax.swing.JTextField jtxtDiscount;
     private javax.swing.JTextField jtxtQty11;
     private javax.swing.JTextField jtxtQty12;
