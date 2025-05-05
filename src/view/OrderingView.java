@@ -1,5 +1,6 @@
 package view;
 
+import DAO.orderDao;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import models.Products;
 import models.SpecialBurgers;
 import controller.OrderController;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class OrderingView extends javax.swing.JFrame {
@@ -19,12 +21,12 @@ public class OrderingView extends javax.swing.JFrame {
         controller = new OrderController(); // call controller class to access controller methods
         
         // add six of each food sub-category
-        controller.addProduct(SPburger1 = new SpecialBurgers("DBB", 1));
-        controller.addProduct(SPburger2 = new SpecialBurgers("DBZ", 2));
-        controller.addProduct(SPburger3 = new SpecialBurgers("BXB", 3));
-        controller.addProduct(SPburger4 = new SpecialBurgers("VYC", 4));
-        controller.addProduct(SPburger5 = new SpecialBurgers("PLI", 5));
-        controller.addProduct(SPburger6 = new SpecialBurgers("THG", 6));
+        controller.addProduct(SPburger1 = new SpecialBurgers("DBA", 300));
+        controller.addProduct(SPburger2 = new SpecialBurgers("DBB", 400));
+        controller.addProduct(SPburger3 = new SpecialBurgers("DBC", 500));
+        controller.addProduct(SPburger4 = new SpecialBurgers("DBZ", 200));
+        controller.addProduct(SPburger5 = new SpecialBurgers("DBD", 100));
+        controller.addProduct(SPburger6 = new SpecialBurgers("DBE", 150));
         
         removeButtonTransparency();
         }
@@ -50,11 +52,13 @@ public class OrderingView extends javax.swing.JFrame {
     }
     
     private void sidebarHighlight(JButton selectedBtn){  // purpose:  highlighting effect when one category is pressed.
-        JButton[] hoverbtns = {btnSpBurger, btnHotdogs, btnGrills, btnDesserts, btnSides, btnDrinks, btnBurger, btnMiniBurger, btnChckBurger}; // array of JButtons
+        JButton[] hoverbtns = {btnSpBurger, btnHotdogs, btnGrills, btnDesserts, btnSides, btnDrinks, btnBurger, btnMiniBurger, btnChckBurger}; // array  of JButtons
         for(JButton btn : hoverbtns){ // for each JButton btn set BG to white
-            btn.setBackground(Color.white);
+            btn.setBackground(Color.white);   
+            btn.setForeground(Color.black);
         }
         selectedBtn.setBackground(new java.awt.Color(37, 150, 190)); // highlight selected button
+        selectedBtn.setForeground(Color.white);
     }
           
     private void removeButtonTransparency(){ // removed: btn opacity and btn increment and decrement highlighting effects when pressed.
@@ -183,7 +187,7 @@ public class OrderingView extends javax.swing.JFrame {
 
         btnSpBurger.setBackground(new java.awt.Color(37, 150, 190));
         btnSpBurger.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSpBurger.setForeground(new java.awt.Color(0, 0, 0));
+        btnSpBurger.setForeground(java.awt.Color.white);
         btnSpBurger.setText("    Special Burgers");
         btnSpBurger.setBorder(null);
         btnSpBurger.setFocusPainted(false);
@@ -400,6 +404,11 @@ public class OrderingView extends javax.swing.JFrame {
         btnPayNow1.setText("PAY NOW");
         btnPayNow1.setBorderPainted(false);
         btnPayNow1.setFocusPainted(false);
+        btnPayNow1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPayNow1ActionPerformed(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -540,6 +549,7 @@ public class OrderingView extends javax.swing.JFrame {
         jPanel1.add(sidebar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, -1, 630));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
 
         jPanel68.setBackground(java.awt.Color.white);
         jPanel68.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -551,9 +561,9 @@ public class OrderingView extends javax.swing.JFrame {
         jPanel68.add(jlblSp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 131, 201, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel9.setForeground(new java.awt.Color(0, 204, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Php 230.00");
+        jLabel9.setText("Php 999.00");
         jPanel68.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
 
         btnInc1.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
@@ -614,7 +624,7 @@ public class OrderingView extends javax.swing.JFrame {
         jPanel69.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 131, 203, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel10.setForeground(new java.awt.Color(0, 204, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Php 999.99");
         jPanel69.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 203, -1));
@@ -671,7 +681,7 @@ public class OrderingView extends javax.swing.JFrame {
         jPanel71.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 131, 201, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel12.setForeground(new java.awt.Color(0, 204, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Php 999.99");
         jPanel71.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
@@ -733,7 +743,7 @@ public class OrderingView extends javax.swing.JFrame {
         jPanel70.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 131, 201, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel11.setForeground(new java.awt.Color(0, 204, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Php 999.99");
         jPanel70.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
@@ -790,7 +800,7 @@ public class OrderingView extends javax.swing.JFrame {
         jPanel72.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 131, 201, -1));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel14.setForeground(new java.awt.Color(0, 204, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Php 999.99");
         jPanel72.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
@@ -852,7 +862,7 @@ public class OrderingView extends javax.swing.JFrame {
         jPanel73.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 131, 201, -1));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel16.setForeground(new java.awt.Color(0, 204, 255));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Php 999.99");
         jPanel73.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
@@ -933,7 +943,7 @@ public class OrderingView extends javax.swing.JFrame {
                     .addComponent(jPanel73, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel72, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -959,7 +969,7 @@ public class OrderingView extends javax.swing.JFrame {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 645, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab2", jPanel9);
@@ -972,7 +982,7 @@ public class OrderingView extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 645, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab3", jPanel6);
@@ -985,7 +995,7 @@ public class OrderingView extends javax.swing.JFrame {
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 645, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab4", jPanel10);
@@ -998,7 +1008,7 @@ public class OrderingView extends javax.swing.JFrame {
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 645, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab5", jPanel14);
@@ -1011,7 +1021,7 @@ public class OrderingView extends javax.swing.JFrame {
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 645, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab6", jPanel15);
@@ -1024,7 +1034,7 @@ public class OrderingView extends javax.swing.JFrame {
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 645, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab7", jPanel16);
@@ -1037,7 +1047,7 @@ public class OrderingView extends javax.swing.JFrame {
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 645, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab8", jPanel17);
@@ -1050,12 +1060,12 @@ public class OrderingView extends javax.swing.JFrame {
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 645, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab9", jPanel19);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 640, 630));
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, -50, 640, 680));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 630));
 
@@ -1255,6 +1265,10 @@ public class OrderingView extends javax.swing.JFrame {
         jtxtSubtotal.repaint();
 
     }//GEN-LAST:event_btnOrderListActionPerformed
+
+    private void btnPayNow1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayNow1ActionPerformed
+        controller.submitOrderToDatabase(); //tempo name
+    }//GEN-LAST:event_btnPayNow1ActionPerformed
 
     public static void main(String args[]) {
 
