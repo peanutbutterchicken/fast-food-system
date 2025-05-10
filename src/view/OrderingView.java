@@ -9,6 +9,7 @@ import models.Products;
 import models.SpecialBurgers;
 import controller.OrderController;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class OrderingView extends javax.swing.JFrame {
@@ -1267,7 +1268,14 @@ public class OrderingView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderListActionPerformed
 
     private void btnPayNow1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayNow1ActionPerformed
-        controller.submitOrderToDatabase(); //tempo name
+        boolean success = controller.submitOrderToDatabase(); //tempo name
+        
+        if(!success){
+            JOptionPane.showMessageDialog(null, "error submiting order to database");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "order succesfully submitted through the database");
+        }
     }//GEN-LAST:event_btnPayNow1ActionPerformed
 
     public static void main(String args[]) {
