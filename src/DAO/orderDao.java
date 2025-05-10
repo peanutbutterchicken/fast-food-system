@@ -5,14 +5,17 @@ import DAO.DbOperations;
 import java.util.List;
 
 public class orderDao {
-    public static void save(List<Products> products){
+    public static boolean save(List<Products> products){
             String UNIQUE_ID = "001"; //tempo id
             
             for (Products p : products) {
-                System.out.println(p.getName() + ", Qty: " + p.getQuantity() + ", Price: " + p.getPrice());
+                System.out.println(p.getName() + ", Qty: " + p.getQuantity() + ", Price: " + p.getPrice()); // printing for debugging, to-remove.
                 String query = "INSERT INTO orders (CustomerID, Qty, Products, Price) VALUES('"+UNIQUE_ID+"', '"+p.getQuantity()+"', '"+p.getName()+"', '"+p.getPrice()+"')";
-                DbOperations.SetOrDeleteData(query, "Order succesfully sent to the db(temporary)");
+                if(!DbOperations.SetOrDeleteData(query)){
+                    return false; // if even one error in the execution of query, it returns false immediately
+                }              
             }
+           return true;
     }
 }
 

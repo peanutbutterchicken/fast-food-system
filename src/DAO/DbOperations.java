@@ -4,18 +4,16 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 
 public class DbOperations {
-    public static void SetOrDeleteData(String query, String message){
+    public static boolean SetOrDeleteData(String query){
         try {
             Connection con = ConnectionProvider.createConnection();
             Statement st = con.createStatement();
-            st.executeUpdate(query);
-            
-            if(!message.equals("")){
-                JOptionPane.showMessageDialog(null, message);
-            }
+            st.executeUpdate(query);       
+            return true; // for succesfull execution of query
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "fuckkkk", "title", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
+
     }
 }
