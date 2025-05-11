@@ -390,7 +390,7 @@ public class OrderingView extends javax.swing.JFrame {
         btnOrderList.setBackground(new java.awt.Color(255, 102, 102));
         btnOrderList.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         btnOrderList.setForeground(new java.awt.Color(255, 255, 255));
-        btnOrderList.setText("ORDER LIST");
+        btnOrderList.setText("TOTAL");
         btnOrderList.setBorderPainted(false);
         btnOrderList.setFocusPainted(false);
         btnOrderList.addActionListener(new java.awt.event.ActionListener() {
@@ -1268,13 +1268,22 @@ public class OrderingView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderListActionPerformed
 
     private void btnPayNow1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayNow1ActionPerformed
-        boolean success = controller.submitOrderToDatabase(); //tempo name
-        
-        if(!success){
-            JOptionPane.showMessageDialog(null, "error submiting order to database");
+        // order confirmation
+        if(controller.getOrderedProducts().isEmpty()){
+            JOptionPane.showMessageDialog(null,"No selected order, please try again...");
         }
         else{
-            JOptionPane.showMessageDialog(null, "order succesfully submitted through the database");
+            int result = JOptionPane.showConfirmDialog(null, "Do you want to proceed to payment?", "Order Confirmation", JOptionPane.YES_NO_OPTION);
+
+            if(result == JOptionPane.YES_OPTION){
+                boolean success = controller.submitOrderToDatabase();
+                    if(!success){
+                        JOptionPane.showMessageDialog(null,"error submiting order to database",  "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "order succesfully submitted through the database");
+                    }
+            }
         }
     }//GEN-LAST:event_btnPayNow1ActionPerformed
 

@@ -56,6 +56,6 @@ public class OrderController {
     
     public boolean submitOrderToDatabase(){ // tempo name
         List<Products> p =  getOrderedProducts(); // store the ordered product list into p
-        return orderDao.save(p); // send p as a parameter for orderDao save method
+        return orderDao.save(p); // send p as a parameter for orderDao save method // returns if the method is success = true or false
     }
 }

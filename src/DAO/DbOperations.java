@@ -14,6 +14,5 @@ public class DbOperations {
         catch(Exception e){
             return false;
         }
-
     }
 }
