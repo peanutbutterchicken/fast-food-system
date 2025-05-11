@@ -313,7 +313,7 @@ public class OrderingView extends javax.swing.JFrame {
         });
         sidebar.add(btnDrinks, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 438, 224, 36));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Webalys-Kameleon.pics-Food-Dome.48.png")); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Webalys-Kameleon.pics-Food-Dome.48.png"))); // NOI18N
         sidebar.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 50, 60));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -567,7 +567,7 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel9.setText("Php 999.00");
         jPanel68.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
 
-        btnInc1.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Paomedia-Small-N-Flat-Sign-add.24.png"))); // NOI18N
         btnInc1.setBorder(null);
         btnInc1.setFocusPainted(false);
         btnInc1.setFocusable(false);
@@ -578,10 +578,13 @@ public class OrderingView extends javax.swing.JFrame {
         });
         jPanel68.add(btnInc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
 
-        btnDec1.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Gakuseisean-Ivista-Minus.24.png"))); // NOI18N
         btnDec1.setBorder(null);
         btnDec1.setFocusPainted(false);
         btnDec1.setFocusable(false);
+        btnDec1.setMaximumSize(new java.awt.Dimension(24, 24));
+        btnDec1.setMinimumSize(new java.awt.Dimension(24, 24));
+        btnDec1.setPreferredSize(new java.awt.Dimension(24, 24));
         btnDec1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDec1ActionPerformed(evt);
@@ -630,7 +633,7 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel10.setText("Php 999.99");
         jPanel69.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 203, -1));
 
-        btnInc2.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Paomedia-Small-N-Flat-Sign-add.24.png"))); // NOI18N
         btnInc2.setBorder(null);
         btnInc2.setFocusPainted(false);
         btnInc2.setFocusable(false);
@@ -641,7 +644,7 @@ public class OrderingView extends javax.swing.JFrame {
         });
         jPanel69.add(btnInc2, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 177, 35, 33));
 
-        btnDec2.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Gakuseisean-Ivista-Minus.24.png"))); // NOI18N
         btnDec2.setBorder(null);
         btnDec2.setFocusPainted(false);
         btnDec2.setFocusable(false);
@@ -687,7 +690,7 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel12.setText("Php 999.99");
         jPanel71.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
 
-        btnInc3.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Paomedia-Small-N-Flat-Sign-add.24.png"))); // NOI18N
         btnInc3.setBorder(null);
         btnInc3.setFocusPainted(false);
         btnInc3.setFocusable(false);
@@ -698,7 +701,7 @@ public class OrderingView extends javax.swing.JFrame {
         });
         jPanel71.add(btnInc3, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
 
-        btnDec3.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Gakuseisean-Ivista-Minus.24.png"))); // NOI18N
         btnDec3.setBorder(null);
         btnDec3.setFocusPainted(false);
         btnDec3.setFocusable(false);
@@ -749,7 +752,7 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel11.setText("Php 999.99");
         jPanel70.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
 
-        btnInc4.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Paomedia-Small-N-Flat-Sign-add.24.png"))); // NOI18N
         btnInc4.setBorder(null);
         btnInc4.setFocusPainted(false);
         btnInc4.setFocusable(false);
@@ -760,7 +763,7 @@ public class OrderingView extends javax.swing.JFrame {
         });
         jPanel70.add(btnInc4, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
 
-        btnDec4.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Gakuseisean-Ivista-Minus.24.png"))); // NOI18N
         btnDec4.setBorder(null);
         btnDec4.setFocusPainted(false);
         btnDec4.setFocusable(false);
@@ -806,7 +809,7 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel14.setText("Php 999.99");
         jPanel72.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
 
-        btnInc5.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Paomedia-Small-N-Flat-Sign-add.24.png"))); // NOI18N
         btnInc5.setBorder(null);
         btnInc5.setFocusPainted(false);
         btnInc5.setFocusable(false);
@@ -817,7 +820,7 @@ public class OrderingView extends javax.swing.JFrame {
         });
         jPanel72.add(btnInc5, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
 
-        btnDec5.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Gakuseisean-Ivista-Minus.24.png"))); // NOI18N
         btnDec5.setBorder(null);
         btnDec5.setFocusPainted(false);
         btnDec5.setFocusable(false);
@@ -868,7 +871,7 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel16.setText("Php 999.99");
         jPanel73.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 201, -1));
 
-        btnInc6.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\OneDrive\\Desktop\\fastfoodsystem\\fastfood-system\\icons\\Paomedia-Small-N-Flat-Sign-add.24.png")); // NOI18N
+        btnInc6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Paomedia-Small-N-Flat-Sign-add.24.png"))); // NOI18N
         btnInc6.setBorder(null);
         btnInc6.setFocusPainted(false);
         btnInc6.setFocusable(false);
@@ -879,7 +882,7 @@ public class OrderingView extends javax.swing.JFrame {
         });
         jPanel73.add(btnInc6, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 177, 35, 33));
 
-        btnDec6.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\Gakuseisean-Ivista-Minus.24.png")); // NOI18N
+        btnDec6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Gakuseisean-Ivista-Minus.24.png"))); // NOI18N
         btnDec6.setBorder(null);
         btnDec6.setFocusPainted(false);
         btnDec6.setFocusable(false);
