@@ -15,7 +15,7 @@ public class orderDao {
                     return false; // if even one error in the execution of query, it returns false immediately
                 }              
             }
-           return true;
+           return true; // note: currently using regular statements prone to sql injection. to-do: used prepared statements, tinatamad pa'ko.
     }
 }
 
