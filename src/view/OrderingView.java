@@ -66,7 +66,7 @@ public class OrderingView extends javax.swing.JFrame {
     }
           
     private void removeButtonTransparency(){ // removed: btn opacity and btn increment and decrement highlighting effects when pressed.
-        JButton[] btns = {btnInc1, btnDec1, btnInc2, btnDec2, btnInc3, btnDec3, btnInc4, btnDec4, btnInc5, btnDec5, btnInc6, btnDec6,};
+        JButton[] btns = {btnInc1, btnDec1, btnInc2, btnDec2, btnInc3, btnDec3, btnInc4, btnDec4, btnInc5, btnDec5, btnInc6, btnDec6, btnOrderingViewExit};
         for(JButton btn : btns){
             btn.setContentAreaFilled(false);
         }
@@ -113,7 +113,7 @@ public class OrderingView extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jtxtTotal = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        jButton9 = new javax.swing.JButton();
+        btnOrderingViewExit = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
@@ -524,36 +524,31 @@ public class OrderingView extends javax.swing.JFrame {
 
         sidebar3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 345, -1, 200));
 
-        jButton9.setFocusPainted(false);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        jPanel5.setBackground(java.awt.Color.white);
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnOrderingViewExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/Elegantthemes-Beautiful-Flat-Power.48.png"))); // NOI18N
+        btnOrderingViewExit.setBorderPainted(false);
+        btnOrderingViewExit.setContentAreaFilled(false);
+        btnOrderingViewExit.setFocusPainted(false);
+        btnOrderingViewExit.setFocusable(false);
+        btnOrderingViewExit.setRequestFocusEnabled(false);
+        btnOrderingViewExit.setRolloverEnabled(false);
+        btnOrderingViewExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnOrderingViewExitActionPerformed(evt);
             }
         });
+        jPanel5.add(btnOrderingViewExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addComponent(jButton9)
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        sidebar3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 552, 200, 80));
+        sidebar3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 552, 200, -1));
 
         jPanel1.add(sidebar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, -1, 630));
 
-        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setBackground(new java.awt.Color(242, 242, 242));
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
+
+        jPanel20.setBackground(new java.awt.Color(244, 244, 244));
 
         jPanel68.setBackground(java.awt.Color.white);
         jPanel68.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1123,10 +1118,14 @@ public class OrderingView extends javax.swing.JFrame {
         sidebarHighlight(btnDrinks);
     }//GEN-LAST:event_btnDrinksActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        new CustomerView().setVisible(true);
-        this.dispose();// temporary: this is how to switch different jframes
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void btnOrderingViewExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderingViewExitActionPerformed
+        int result = JOptionPane.showConfirmDialog(null, "Do you want to exit?", "Ordering View", JOptionPane.YES_NO_OPTION);
+        
+        if(result == JOptionPane.YES_OPTION){
+            new MainMenu().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnOrderingViewExitActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -1323,10 +1322,10 @@ public class OrderingView extends javax.swing.JFrame {
     private javax.swing.JButton btnInc6;
     private javax.swing.JButton btnMiniBurger;
     private javax.swing.JButton btnOrderList;
+    private javax.swing.JButton btnOrderingViewExit;
     private javax.swing.JButton btnPayNow1;
     private javax.swing.JButton btnSides;
     private javax.swing.JButton btnSpBurger;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -58,4 +58,15 @@ public class OrderController {
         List<Products> p =  getOrderedProducts(); // store the ordered product list into p
         return orderDao.save(p); // send p as a parameter for orderDao save method // returns if the method is success = true or false
     }
+    public List<Products> getOrdersByCustomerId(int customerId) {
+        List<Products> orderedProducts = orderDao.getOrdersByCustomerId(customerId);
+        this.products = orderedProducts;
+        return orderedProducts;
+    }
+    public boolean updateOrderStatus(int customerId, String status) {
+        return orderDao.updateOrderStatus(customerId, status);
+    }
+    public boolean deleteCanceledOrders(int customerId) {
+        return orderDao.deleteOrderByCustomerId(customerId);
+    }
 }

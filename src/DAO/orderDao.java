@@ -4,8 +4,11 @@ import models.Products;
 import DAO.DbOperations;
 import java.util.List;
 
+import java.sql.*;
+import java.util.ArrayList;
+
 public class orderDao {
-    public static boolean save(List<Products> products){
+        public static boolean save(List<Products> products){
             String UNIQUE_ID = "001"; //tempo id
             
             for (Products p : products) {
@@ -17,8 +20,64 @@ public class orderDao {
             }
            return true; // note: currently using regular statements prone to sql injection. to-do: used prepared statements, tinatamad pa'ko.
     }
-}
+        
+    public static List<Products> getOrdersByCustomerId(int customerId) {
+        List<Products> orderedProducts = new ArrayList<>();
+        try {
+            Connection con = ConnectionProvider.createConnection();
+            String query = "SELECT products, qty, price FROM orders WHERE customerID = ? AND status != 'Paid'";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, customerId);
 
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                String productName = rs.getString("products");
+                int quantity = rs.getInt("Qty");
+                double price = rs.getDouble("Price");
+
+                Products product = new Products(productName, (int) price);
+                product.setQuantity(quantity);
+
+                orderedProducts.add(product);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderedProducts;
+    }
+    
+    public static boolean updateOrderStatus(int customerId, String status) {
+        try {
+            Connection con = ConnectionProvider.createConnection();
+            String query = "UPDATE orders SET status = ? WHERE customerID = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, status);
+            pst.setInt(2, customerId);
+
+            int updatedRows = pst.executeUpdate(); // every successful update, increments this var
+            return updatedRows > 0;  // return true if rows updated is greater than 0
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // return false if nothing is updated
+        }
+    }
+    
+    public static boolean deleteOrderByCustomerId(int customerId) {
+        try {
+            Connection con = ConnectionProvider.createConnection();
+            String query = "DELETE FROM orders WHERE customerID = ? AND status = 'Canceled'";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, customerId);
+
+            int deletedRows = pst.executeUpdate(); // every successful daletion, increments this var
+            return deletedRows > 0; // return true if rows deleted is greater than 0
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // return false if nothing is deleted
+        }
+    }
+}
 /* to do  list: 
 P: Ordered product list needs reset for every successful db insertion
 A: make a method for it. still needs further study here.

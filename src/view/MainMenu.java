@@ -41,6 +41,7 @@ public class MainMenu extends javax.swing.JFrame {
         buttonCashier = new javax.swing.JButton();
         buttonManager1 = new javax.swing.JButton();
         buttonCustomer = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1089, 631));
@@ -48,57 +49,55 @@ public class MainMenu extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1089, 631));
 
         jPanel1.setBackground(java.awt.Color.white);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonCashier.setIcon(new javax.swing.ImageIcon("C:\\Users\\markj\\Downloads\\CASHIER(2).png")); // NOI18N
+        buttonCashier.setBorderPainted(false);
+        buttonCashier.setFocusPainted(false);
+        buttonCashier.setFocusable(false);
+        buttonCashier.setRequestFocusEnabled(false);
+        buttonCashier.setRolloverEnabled(false);
         buttonCashier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCashierActionPerformed(evt);
             }
         });
+        jPanel1.add(buttonCashier, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 137, -1, 288));
 
         buttonManager1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/profile/manager.png"))); // NOI18N
+        buttonManager1.setBorderPainted(false);
+        buttonManager1.setFocusPainted(false);
+        buttonManager1.setFocusable(false);
+        buttonManager1.setRequestFocusEnabled(false);
+        buttonManager1.setRolloverEnabled(false);
         buttonManager1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonManager1ActionPerformed(evt);
             }
         });
+        jPanel1.add(buttonManager1, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 137, -1, 288));
 
         buttonCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/profile/customer.png"))); // NOI18N
+        buttonCustomer.setBorderPainted(false);
+        buttonCustomer.setFocusPainted(false);
+        buttonCustomer.setFocusable(false);
+        buttonCustomer.setRequestFocusEnabled(false);
+        buttonCustomer.setRolloverEnabled(false);
         buttonCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCustomerActionPerformed(evt);
             }
         });
+        jPanel1.add(buttonCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(652, 137, -1, 288));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(225, Short.MAX_VALUE)
-                .addComponent(buttonManager1)
-                .addGap(18, 18, 18)
-                .addComponent(buttonCashier)
-                .addGap(18, 18, 18)
-                .addComponent(buttonCustomer)
-                .addGap(224, 224, 224))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonManager1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonCashier, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(206, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/background/finalff.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,45 +108,23 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCashierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCashierActionPerformed
-        // TODO add your handling code here:
+        new CashierView().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_buttonCashierActionPerformed
 
     private void buttonManager1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonManager1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_buttonManager1ActionPerformed
 
     private void buttonCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustomerActionPerformed
-        // TODO add your handling code here:
+        new OrderingView().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_buttonCustomerActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainMenu().setVisible(true);
@@ -159,6 +136,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton buttonCashier;
     private javax.swing.JButton buttonCustomer;
     private javax.swing.JButton buttonManager1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
