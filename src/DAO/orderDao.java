@@ -20,9 +20,6 @@ public class orderDao {
 }
 
 /* to do  list: 
-P: success messege every ordered products succesfully inserted into mysql db, making it redundant and annoying
-A: make it do it one time only 
-
 P: Ordered product list needs reset for every successful db insertion
 A: make a method for it. still needs further study here.
 

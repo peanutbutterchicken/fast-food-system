@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import models.Products;
 import models.SpecialBurgers;
 import controller.OrderController;
+import fastfood.system.CustomerView;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+    
 public class OrderingView extends javax.swing.JFrame {
     private OrderController controller; // bat final
     
@@ -19,6 +20,7 @@ public class OrderingView extends javax.swing.JFrame {
     
     public OrderingView() {
         initComponents();
+        setLocationRelativeTo(null);
         controller = new OrderController(); // call controller class to access controller methods
         
         // add six of each food sub-category
@@ -30,6 +32,7 @@ public class OrderingView extends javax.swing.JFrame {
         controller.addProduct(SPburger6 = new SpecialBurgers("DBE", 150));
         
         removeButtonTransparency();
+        setDefaultCloseOperation(OrderingView.DISPOSE_ON_CLOSE);
         }
     
     private void incrementProductQuantity(Products product){
@@ -582,9 +585,6 @@ public class OrderingView extends javax.swing.JFrame {
         btnDec1.setBorder(null);
         btnDec1.setFocusPainted(false);
         btnDec1.setFocusable(false);
-        btnDec1.setMaximumSize(new java.awt.Dimension(24, 24));
-        btnDec1.setMinimumSize(new java.awt.Dimension(24, 24));
-        btnDec1.setPreferredSize(new java.awt.Dimension(24, 24));
         btnDec1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDec1ActionPerformed(evt);
@@ -1124,7 +1124,8 @@ public class OrderingView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDrinksActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        new CustomerView().setVisible(true);
+        this.dispose();// temporary: this is how to switch different jframes
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -1238,7 +1239,7 @@ public class OrderingView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInc5ActionPerformed
 
     private void btnDec5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDec5ActionPerformed
-        decrementProductQuantity(SPburger1);
+        decrementProductQuantity(SPburger5);
         String value = Integer.toString(SPburger5.getQuantity());
         jtxtQty15.setText(value);
     }//GEN-LAST:event_btnDec5ActionPerformed
